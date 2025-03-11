@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cart page for reviewing selected items, processing billing, and completing checkout.">
+    <title>Cart</title>
+    <link rel="stylesheet" href="/project/css/cart_style.css">
+</head>
+
+<body>
+    <header>
+        <img src="/project/placeholder_img/epic-games-logo-navbar.png" alt="Epic Games Logo">
+        <ul>
+            <li><a href="">Store</a></li>
+            <li><a href="">Store</a></li>
+
+        </ul>
+    </header>
+    <main>
+        <div class="side-bar">
+            <ul>
+                <li><a href="">Store</a></li>
+                <li><a href="">Store</a></li>
+                <li><a href="">Store</a></li>
+
+            </ul>
+        </div>
+        <section class="list-of-orders">
+
+            <ul>
+                <li class="cart-item">
+                    <img src="/project/placeholder_img/epic-games-logo-navbar.png" alt="Item">
+                    <div>
+                        <p class="item-name">Game more text here</p>
+                        <span class="price">$10</span>
+                    </div>
+                    <div class="input-group">
+                        <label>Discount</label>
+                        <input type="number" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Total</label>
+                        <input type="text" value="">
+                    </div>
+                    <button class="close">X</button>
+                </li>
+                <li class="cart-item">
+                    <img src="/project/placeholder_img/epic-games-logo-navbar.png" alt="Item">
+                    <div>
+                        <p class="item-name">Game more text here</p>
+                        <span class="price">$10</span>
+                    </div>
+                    <div class="input-group">
+                        <label>Discount</label>
+                        <input type="number" value="20">
+                    </div>
+                    <div class="input-group">
+                        <label>Total</label>
+                        <input type="text" value="">
+                    </div>
+                    <button class="close">X</button>
+                </li>
+            </ul>
+
+
+        </section>
+        <section class="payment-information">
+            <form class="shipping-info">
+                <h2>Shipping Information</h2>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" placeholder="Last Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Street Address</label>
+                    <input type="text" id="address" placeholder="Street Address">
+                </div>
+
+                <div class="form-group">
+                    <label for="address2">Address 2 (Optional)</label>
+                    <input type="text" id="address2" placeholder="Apartment, suite, etc.">
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" placeholder="City">
+                    </div>
+                    <div class="form-group">
+                        <label for="province">Province</label>
+                        <input type="text" id="province" placeholder="Province">
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">ZIP Code</label>
+                        <input type="text" id="zip" placeholder="ZIP Code">
+                    </div>
+                </div>
+
+                <div class="payment-method">
+                    <label>
+                        <input type="radio" name="payment" value="cod" checked> Epic Cash
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="card"> Pay with Card
+                    </label>
+                </div>
+
+                <div class="card-info" id="card-info" style="display: none;">
+                    <h3>Card Information</h3>
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" id="expiry" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+                <h3>Total Cost: <span id="total-amount">$0.00</span></h3>
+                <input type="submit" class="submit_btn">
+            </form>
+        </section>
+    </main>
+    <script src="/project/js/cart_script.js"></script>
+</body>
+
+</html>
