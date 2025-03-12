@@ -28,8 +28,8 @@
                 <div class="navbar-text">Let's find your next favorite game.</div>
             </div>
             <div class="navbar-btn">
-                <a href="#" class="log-in-btn">Log In</a>
-                <a href="#" class="sign-up-btn">Sign Up</a>
+                <a href="#" id="login-btn" class="log-in-btn">Log In</a>
+                <a href="#" id="signup-btn" class="sign-up-btn">Sign Up</a>
             </div>
         </nav>
 
@@ -54,42 +54,49 @@
                             <a href="#">
                                 <img src="../assets/icons/genre-icon/all.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">All Genres</p>
+                                <span class="genre-count"></span>
                             </a>
                         </li>
                         <li class="genre-item">
                             <a href="#">
                                 <img src="../assets/icons/genre-icon/action.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">Action</p>
+                                <span class="genre-count"></span>
                             </a>
                         </li>
                         <li class="genre-item">
                             <a href="#">
                                 <img src="../assets/icons/genre-icon/adventure.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">Adventure</p>
+                                <span class="genre-count"></span>
                             </a>
                         </li>
                         <li class="genre-item">
                             <a href="#">
                                 <img src="../assets/icons/genre-icon/fighting.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">Fighting</p>
+                                <span class="genre-count"></span>
                             </a>
                         </li>
                         <li class="genre-item">
                             <a href="#">
                                 <img src="../assets/icons/genre-icon/rpg.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">Role Playing</p>
+                                <span class="genre-count"></span>
                             </a>
                         </li>
                         <li class="genre-item">
                             <a href="#">
                                 <img src="../assets/icons/genre-icon/sports.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">Sports</p>
+                                <span class="genre-count"></span>
                             </a>
                         </li>
                         <li class="genre-item">
                             <a href="#">
                                 <img src="../assets/icons/genre-icon/survival.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">Survival</p>
+                                <span class="genre-count"></span>
                             </a>
                         </li>
                         <!-- Add more genres as needed -->
@@ -342,6 +349,36 @@
             </section>
         </main>
     </div>
+
+    <!-- Log In Modal Structure -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form id="loginForm" action="login.php" method="post">
+                <input type="text" name="username" placeholder="Username or Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="submit-btn">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal Structure -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Your Account</h2>
+            <form id="signupForm" action="signup.php" method="post">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password_confirm" placeholder="Confirm Password" required>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
     <script src="../js/dashboard-script.js"></script>
 </body>
 
