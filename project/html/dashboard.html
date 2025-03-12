@@ -1,15 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard Layout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#"><img src="../assets/logo/logo.png" alt="Logo"></a>
+    </div>
 
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Navbar -->
+        <nav>
+            <div class="navbar-brand">
+                <a href="#"><img src="../assets/logo/logo1.png" alt="Logo"></a>
+                <div class="navbar-text">Let's find your next favorite game.</div>
+            </div>
+            <div class="navbar-btn">
+                <a href="#" class="log-in-btn">Log In</a>
+                <a href="#" class="sign-up-btn">Sign Up</a>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Search Row -->
+            <div class="search-section">
+                <form class="search-field">
+                    <input type="text" placeholder="Search for products...">
+                    <button type="submit" class="search-btn"><img src="../assets/icons/search.png" alt="Search icon"></button>
+                </form>
+                <a href="#" class="cart-btn"><img src="../assets/icons/cart.png" alt="Cart icon">Cart</a>
+            </div>
+
+            <!-- Content Row -->
+            <div class="content-section">
+                <!-- Categories Column -->
+                <div class="categories">
+                    <h5>Categories</h5>
+                    <ul>
+                        <li class="genre-item">
+                            <div>
+                                <img src="../assets/icons/genre-icon/all.png" alt="icon" class="genre-icon">
+                                <p class="genre-name">All Genres</p>
+                            </div>
+                        </li>
+                        <li class="genre-item">
+                            <div>
+                                <img src="../assets/icons/genre-icon/action.png" alt="icon" class="genre-icon">
+                                <p class="genre-name">Action</p>
+                            </div>
+                        </li>
+                        <li class="genre-item">
+                            <div>
+                                <img src="../assets/icons/genre-icon/adventure.png" alt="icon" class="genre-icon">
+                                <p class="genre-name">Adventure</p>
+                            </div>
+                        </li>
+
+                        <li class="genre-item">
+                            <div>
+                                <img src="../assets/icons/genre-icon/rpg.png" alt="icon" class="genre-icon">
+                                <p class="genre-name">Role Playing</p>
+                            </div>
+                        </li>
+                        <li class="genre-item">
+                            <div>
+                                <img src="../assets/icons/genre-icon/sports.png" alt="icon" class="genre-icon">
+                                <p class="genre-name">Sports</p>
+                            </div>
+                        </li>
+                        <li class="genre-item">
+                            <div>
+                                <img src="../assets/icons/genre-icon/strategy.png" alt="icon" class="genre-icon">
+                                <p class="genre-name">Strategy</p>
+                            </div>
+                        </li>
+                        <!-- Add more genres as needed -->
+                    </ul>
+                </div>
+
+                <!-- Products Column -->
+                <div class="products">
+                    <h5>All Products</h5>
+                    <div class="product-grid">
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/mh-wilds.png" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Monster Hunter Wilds</h5>
+                                <p class="card-text">$19.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/bg3.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Baldur's Gate 3</h5>
+                                <p class="card-text">$29.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/2k25.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">NBA 2K25</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/spiderman2.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Spiderman 2</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/elden-ring.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Elden Ring</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/dmc5.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Devil May Cry 5</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/ffxvi.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Final Fantasy XVI</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/minecraft.png" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Minecraft</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/split-fiction.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Split Fiction</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/rust.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Rust</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/firewatch.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Firewatch</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/stardew.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Stardew Valley</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/kcd2.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Kingdom Come: Deliverance 2</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/rdr2.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Red Dead Redemption 2</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+                        <a href="#" class="card">
+                            <img src="../assets/game-covers/tekken8.jpg" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Tekken 8</h5>
+                                <p class="card-text">$39.99</p>
+                            </div>
+                        </a>
+
+                        <!-- Add additional cards as needed -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 </body>
 
 </html>
-
-<!-- Test -->
