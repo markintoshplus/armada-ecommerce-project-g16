@@ -1,31 +1,252 @@
-/* Sidebar styles */
+/* Button styles */
+.log-in-btn,
+.sign-up-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+.log-in-btn {
+    background-color: #b8ace9;
+    border: solid 1px #b8ace9;
+    color: #5305b3;
+}
+
+.sign-up-btn {
+    background-color: transparent;
+    border: solid 1px #b8ace9;
+    color: #b8ace9;
+}
+
+.log-in-btn:hover {
+    background-color: #b8ace9;
+}
+
+.sign-up-btn:hover {
+    color: #b8ace9;
+}
+
+/* Reset some default styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Fixed Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     width: 80px;
-    /* Sidebar width */
     height: 100vh;
-    background-color: #343a40;
+    background-color: #5305b3;
     color: #fff;
-    padding: 1rem;
-    z-index: 1050;
+    padding: 1rem 0;
+    text-align: center;
+    border-right: 1px solid #5305b3;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Main container (shifted to the right by sidebar width) */
+.main-container {
+    margin-left: 80px;
+    /* same as sidebar width */
 }
 
 /* Navbar styles */
-.navbar-custom {
-    position: fixed;
-    top: 0;
-    left: 80px;
-    width: calc(100% - 80px);
-    z-index: 1040;
+nav {
+    background-color: #5305b3;
+    color: #fff;
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
 }
 
-/* Content styles */
-.content {
-    margin-top: 56px;
-    /* Height of the fixed navbar */
-    margin-left: 250px;
-    /* Align with the sidebar */
+nav .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+nav .navbar-text {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1rem;
+}
+
+nav .navbar-btn {
+    display: flex;
+    gap: 0.5rem;
+}
+
+main {
+    margin: auto;
+}
+
+/* Search row */
+.search-section {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    background-color: transparent;
+}
+
+.search-section input[type="text"] {
+    width: 300px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+.search-section .cart-btn {
+    padding: 0.5rem 1rem;
+    background-color: #b8ace9;
+    color: #5305b3;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Content row (below search) */
+.content-section {
+    display: flex;
     padding: 1rem;
+}
+
+/* Left column: Categories */
+.categories {
+    width: 20%;
+    padding: 1rem;
+}
+
+.categories h5 {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.categories ul {
+    list-style: none;
+    padding: 0;
+}
+
+.genre-item {
+    border: 1px solid #e6e6e6;
+    border-radius: 12px;
+    background-color: #fff;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.genre-item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-color: #d4d4d4;
+}
+
+.genre-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.5rem;
+}
+
+.genre-item .badge {
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+/* Right column: Products */
+.products {
+    width: 80%;
+    padding: 1rem;
+}
+
+.products h5 {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    padding: 0.75rem;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .content-row {
+        flex-direction: column;
+    }
+
+    .categories,
+    .products {
+        width: 100%;
+    }
+
+    .main-container {
+        margin-left: 80px;
+    }
 }
