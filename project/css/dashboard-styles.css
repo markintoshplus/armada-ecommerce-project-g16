@@ -34,7 +34,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
+    background-color: #efebff;
     color: #333
 }
 
@@ -48,7 +48,7 @@ body {
     color: #fff;
     padding: 0.5rem 0;
     text-align: center;
-    border-right: 1px solid #5305b3;
+    border-right: 1px solid #b8ace9;
 }
 
 .sidebar a img {
@@ -109,7 +109,7 @@ main {
 .search-section {
     display: flex;
     align-items: center;
-    padding: 3rem 2rem 0rem 3rem;
+    padding: 2rem 2rem 0rem 3rem;
     background-color: transparent;
     gap: 2rem;
 }
@@ -178,24 +178,24 @@ main {
 /* Content row (below search) */
 .content-section {
     display: flex;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     gap: 2rem;
 }
 
 /* Categories */
-.categories {
+.categories-section {
     padding: 1rem;
 }
 
-.categories h5 {
+.categories-section h5 {
     text-align: center;
     margin-bottom: 1rem;
     font-size: 1rem;
 }
 
-.categories ul {
+.categories-section ul {
     list-style: none;
-    padding: 1rem;
+    padding: 0 1rem;
 }
 
 .genre-item {
@@ -213,6 +213,11 @@ main {
     justify-content: center;
     text-align: center;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.genre-item a {
+    text-decoration: none;
+    color: #333;
 }
 
 .genre-item:hover {
@@ -239,12 +244,14 @@ main {
 }
 
 /* Products */
-.products {
+.products-section {
+    display: flex;
+    flex-direction: column;
     width: 80%;
     padding: 1rem;
 }
 
-.products h5 {
+.products-section h5 {
     margin-bottom: 1rem;
     font-size: 1rem;
 }
@@ -272,7 +279,10 @@ main {
 }
 
 .card-body {
-    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5rem;
     flex-grow: 1;
 }
 
@@ -285,17 +295,40 @@ main {
     font-size: 0.9rem;
 }
 
+.fa-star-o {
+    color: #b8ace9;
+}
+
+.checked {
+    color: #5305b3;
+}
+
+.user-rating {
+    font-size: 0.7rem;
+    margin: 0;
+    padding: 0;
+}
+
+.pagination {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: end;
+}
+
+.pagination a {
+    color: #5305b3;
+    float: left;
+    padding: 10px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #b8ace9;
+    margin: 0 4px;
+    font-size: 0.8rem;
+}
+
 @media (max-width: 768px) {
     .sidebar {
         display: none;
-    }
-
-    .content-section {
-        flex-direction: column;
-    }
-
-    .categories ul {
-        display: inline;
     }
 
     .main-container {
