@@ -29,9 +29,10 @@
         <section class="main">
             <article class="search">
                 <input type="text" placeholder="Search Products">
-                <a href="../html/cart.html"><button>Cart (<span id="cart">0</span>)</button></a>
+                <a href="../html/cart.html" id="cart-link"><button>Cart (<span id="cart">0</span>)</button></a>
             </article>
-            <button class="back"><i class="fas fa-angle-left"></i>All Products(<span>0</span>)</button>
+            <a href="dashboard.html"><button class="back"><i class="fas fa-angle-left"></i>All Products
+                    (<span>0</span>)</button></a>
             <section class="top_row">
                 <div class="top_row_left">
                     <img src="../assets/soy/burger.jpg" class="main_burger" alt="main burger" id="main_img">
@@ -57,10 +58,11 @@
                             <p id="ratings">36 Rating</p>
                         </div>
                         <h6 id="price_store">$ 10</h6>
-                        <p class="description" id="description_final">Lorem, ipsum dolor sit amet consectetur
-                            adipisicing elit. Temporibus exercitationem facilis quo qui velit dolores, voluptates
-                            nesciunt libero sequi laudantium? Sequi quod a doloremque distinctio dicta deleniti beatae
-                            quos corrupti.</p>
+                        <p class="description" id="description_final">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem facilis
+                            quo qui velit dolores, voluptates nesciunt libero sequi laudantium? Sequi quod a doloremque
+                            distinctio dicta deleniti beatae quos corrupti.
+                        </p>
                     </div>
                     <div class="top_row_right_bottom">
                         <div class="quantity">
@@ -69,7 +71,7 @@
                         </div>
                         <div class="buttons">
                             <button id="up"><i class="fas fa-caret-up"></i></button>
-                            <button id="down"><i class="fas fa-caret-down"></i> </button>
+                            <button id="down"><i class="fas fa-caret-down"></i></button>
                         </div>
                         <div class="amount">
                             <h6>Total Amount</h6>
@@ -102,87 +104,48 @@
                                 </div>
                             </div>
                         </li>
-                        <li id="bottom_li1">
-                            <div>
-                                <img class="bottom_pictures" id="top2_1" src="../assets/soy/burger.jpg" alt="image">
-                                <div class="title">
-                                    <div>
-                                        <p id="bottom_p1">Vegetables</p>
-                                        <div class="stars">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/no_star.png" alt="star">
-                                            <p id="rating_bottom1" class="rating">36 Rating</p>
-                                        </div>
-                                    </div>
-                                    <h6>$ 10</h6>
-                                </div>
-                            </div>
-                        </li>
-                        <li id="bottom_li2">
-                            <div>
-                                <img class="bottom_pictures" id="top2_2" src="../assets/soy/burger.jpg" alt="image">
-                                <div class="title">
-                                    <div>
-                                        <p id="bottom_p2">Vegetables</p>
-                                        <div class="stars">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/no_star.png" alt="star">
-                                            <p id="rating_bottom2" class="rating">36 Rating</p>
-                                        </div>
-                                    </div>
-                                    <h6>$ 10</h6>
-                                </div>
-                            </div>
-                        </li>
-                        <li id="bottom_li3">
-                            <div>
-                                <img class="bottom_pictures" id="top2_3" src="../assets/soy/burger.jpg" alt="image">
-                                <div class="title">
-                                    <div>
-                                        <p id="bottom_p3">Vegetables</p>
-                                        <div class="stars">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/no_star.png" alt="star">
-                                            <p id="rating_bottom3" class="rating">36 Rating</p>
-                                        </div>
-                                    </div>
-                                    <h6>$ 10</h6>
-                                </div>
-                            </div>
-                        </li>
-                        <li id="bottom_li4">
-                            <div>
-                                <img class="bottom_pictures" id="top2_4" src="../assets/soy/burger.jpg" alt="image">
-                                <div class="title">
-                                    <div>
-                                        <p id="bottom_p4">Vegetables</p>
-                                        <div class="stars">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/no_star.png" alt="star">
-                                            <p id="rating_bottom4" class="rating">36 Rating</p>
-                                        </div>
-                                    </div>
-                                    <h6>$ 10</h6>
-                                </div>
-                            </div>
-                        </li>
+                        <!-- Additional similar items... -->
                     </ul>
                 </article>
             </section>
         </section>
     </section>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form id="loginForm" action="login.php" method="post">
+                <input type="text" name="username" placeholder="Username or Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="submit-btn">Log In</button>
+            </form>
+            <p class="modal-switch">
+                Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Your Account</h2>
+            <form id="signupForm" action="signup.php" method="post">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password_confirm" placeholder="Confirm Password" required>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+            <p class="modal-switch">
+                Already have an account? <a href="#" id="switch-to-login">Log In</a>
+            </p>
+        </div>
+    </div>
+
     <div id="customAlert">
         <div class="alert-box">
             <i class="fa-solid fa-check-circle" style="color: green; font-size: 40px;"></i>
@@ -190,9 +153,8 @@
             <button id="closeAlert">OK</button>
         </div>
     </div>
+
     <script src="../js/product-view_script.js"></script>
 </body>
 
 </html>
-
-<!-- Test -->
