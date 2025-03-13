@@ -94,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Signup Modal
     const signupModal = document.getElementById("signup-modal");
     const signupBtn = document.getElementById("signup-btn");
     const signupCloseBtn = signupModal.querySelector(".close");
@@ -109,6 +108,40 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.target === signupModal) {
             signupModal.style.display = "none";
         }
+    });
+
+    /*  
+     * DOCU: Switches from the login modal to the signup modal when the link is clicked.
+     * @param {Event} e - The click event.
+     * @returns {void} - Does not return any value.
+     * @throws {None}
+     * 
+     * Last Updated: 2025-03-13  
+     * Author: Mark Cedrick De Vera  
+     * Last Updated By: Mark Cedrick De Vera  
+     */
+    const switchToSignup = document.getElementById('switch-to-signup');
+    switchToSignup.addEventListener('click', function (e) {
+        e.preventDefault();
+        loginModal.style.display = 'none';
+        signupModal.style.display = 'block';
+    });
+
+    /*  
+     * DOCU: Switches from the signup modal to the login modal when the link is clicked.
+     * @param {Event} e - The click event.
+     * @returns {void} - Does not return any value.
+     * @throws {None}
+     * 
+     * Last Updated: 2025-03-13  
+     * Author: Mark Cedrick De Vera  
+     * Last Updated By: Mark Cedrick De Vera  
+     */
+    const switchToLogin = document.getElementById('switch-to-login');
+    switchToLogin.addEventListener('click', function (e) {
+        e.preventDefault();
+        signupModal.style.display = 'none';
+        loginModal.style.display = 'block';
     });
 
     /*---------------------------------------------------------

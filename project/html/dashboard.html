@@ -369,7 +369,7 @@
         </main>
     </div>
 
-    <!-- Log In Modal Structure -->
+    <!-- Login Modal -->
     <div id="login-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -379,10 +379,13 @@
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit" class="submit-btn">Log In</button>
             </form>
+            <p class="modal-switch">
+                Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a>
+            </p>
         </div>
     </div>
 
-    <!-- Sign Up Modal Structure -->
+    <!-- Signup Modal -->
     <div id="signup-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -395,8 +398,12 @@
                 <input type="password" name="password_confirm" placeholder="Confirm Password" required>
                 <button type="submit" class="submit-btn">Sign Up</button>
             </form>
+            <p class="modal-switch">
+                Already have an account? <a href="#" id="switch-to-login">Log In</a>
+            </p>
         </div>
     </div>
+
 
     <script src="../js/dashboard-script.js"></script>
 </body>
