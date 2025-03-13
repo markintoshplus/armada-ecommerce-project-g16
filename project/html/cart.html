@@ -14,27 +14,32 @@
     <header>
         <img src="/project/placeholder_img/epic-games-logo-navbar.png" alt="Epic Games Logo">
         <ul>
-            <li><a href="">Store</a></li>
-            <li><a href="">Store</a></li>
+            <li><a href="">Home</a></li>
+
 
         </ul>
     </header>
     <main>
         <div class="side-bar">
             <ul>
-                <li><a href="">Store</a></li>
-                <li><a href="">Store</a></li>
-                <li><a href="">Store</a></li>
+                <li><a href="">Top Free</a></li>
+                <li><a href="">Top Rated</a></li>
 
             </ul>
         </div>
         <section class="list-of-orders">
-
+            <div class="search-cart">
+                <form action="#" method="POST">
+                    <input type="text" name="Search" id="search" placeholder="Search">
+                </form>
+                <a href="#"><img src="/project/placeholder_img/icons8-cart-50 (3).png" alt="cart icon"> Cart (<span
+                        id="cart-counter">0</span>)</a>
+            </div>
             <ul>
                 <li class="cart-item">
-                    <img src="/project/placeholder_img/epic-games-logo-navbar.png" alt="Item">
+                    <img src="/project/epic_games/beyond-the-ice-palace-2.jpg" alt="Item">
                     <div>
-                        <p class="item-name">Game more text here</p>
+                        <p class="item-name">Beyond The Ice</p>
                         <span class="price">$10</span>
                     </div>
                     <div class="input-group">
@@ -48,10 +53,10 @@
                     <button class="close">X</button>
                 </li>
                 <li class="cart-item">
-                    <img src="/project/placeholder_img/epic-games-logo-navbar.png" alt="Item">
+                    <img src="/project/epic_games/colony-defense.jpg" alt="Item">
                     <div>
-                        <p class="item-name">Game more text here</p>
-                        <span class="price">$10</span>
+                        <p class="item-name">Colony Defense</p>
+                        <span class="price">$80</span>
                     </div>
                     <div class="input-group">
                         <label>Discount</label>
@@ -63,8 +68,32 @@
                     </div>
                     <button class="close">X</button>
                 </li>
+                <li class="cart-item">
+                    <img src="/project/epic_games/blade-prince-academY.jpg" alt="Item">
+                    <div>
+                        <p class="item-name">Blade Prince Academy</p>
+                        <span class="price">$45</span>
+                    </div>
+                    <div class="input-group">
+                        <label>Discount</label>
+                        <input type="number" value="20">
+                    </div>
+                    <div class="input-group">
+                        <label>Total</label>
+                        <input type="text" value="">
+                    </div>
+                    <button class="close">X</button>
+                </li>
+                
             </ul>
-
+            <section id="deleteModal" class="modal">
+                <div class="modal-content">
+                    <h3>Remove From Cart</h3>
+                    <p>Are you sure you want to remove this item?</p>
+                    <button id="confirmDeleteBtn" class="btn btn-confirm">Remove Item</button>
+                    <button id="cancelDeleteBtn" class="btn btn-cancel">Cancel</button>
+                </div>
+            </section>
 
         </section>
         <section class="payment-information">
@@ -135,6 +164,14 @@
                 </div>
                 <h3>Total Cost: <span id="total-amount">$0.00</span></h3>
                 <input type="submit" class="submit_btn">
+                <section id="orderModal" class="modal">
+                    <div class="modal-content">
+                        <h3>Confirm Your Order</h3>
+                        <p>Are you sure you want to proceed with your order?</p>
+                        <button id="confirmOrderBtn" class="btn btn-confirm">Confirm Order</button>
+                        <button id="cancelOrderBtn" class="btn btn-cancel">Cancel</button>
+                </section>
+                </div>
             </form>
         </section>
     </main>
