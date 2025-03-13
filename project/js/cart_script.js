@@ -5,12 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartCounter = document.getElementById('cart-counter');
     let currentItemToDelete = null;
 
-    // Function to update cart counter
+    
     function updateCartCounter() {
         cartCounter.textContent = cartItems.length;
     }
 
-    // Function to render cart items from localStorage
+    /**
+     * Function to get items stored in local storage
+     * This will append the items to the page
+     */
     function renderCartItems() {
         cartList.innerHTML = '';
         cartItems.forEach((item) => {
@@ -38,7 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTotals();
     }
 
-    // Update totals and localStorage
+    /**
+     * Function to calculate the price and quantity of each items
+     * This will also display the total cost of the items in the cart
+     */
     function updateTotals() {
         let overallTotal = 0;
 
@@ -57,7 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('total-amount').textContent = `$${overallTotal.toFixed(2)}`;
     }
 
-    // Delete item functionality (SweetAlert2)
+    /**
+     * Function to delete an item to the list
+     */
     function handleDeleteItem(itemElement) {
         const itemId = itemElement.dataset.id;
         cartItems = cartItems.filter(item => item.id !== itemId);
@@ -65,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCartItems();
     }
 
-    // Event listeners
+
     cartList.addEventListener('input', (e) => {
         if (e.target.matches('input[type="number"]')) {
             updateTotals();
@@ -96,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Payment radio buttons
+    
     const paymentRadios = document.querySelectorAll('input[name="payment"]');
     const cardInfo = document.getElementById('card-info');
     paymentRadios.forEach(radio => {
@@ -105,12 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Order confirmation (SweetAlert2)
+    
     const submitBtn = document.querySelector(".submit_btn");
     if (submitBtn) {
         submitBtn.addEventListener("click", (event) => {
             event.preventDefault();
-            console.log("Submit button clicked!"); // Check if this log appears
+            console.log("Submit button clicked!"); 
             if (validateForm()) {
                 console.log("Form is valid");
                 Swal.fire({
@@ -143,7 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Form validation
+    /**
+     * Function to validate the content of the form
+     * this also checks what payment type is selected to prevent false positive on hidden input box
+     */
     function validateForm() {
         const paymentType = document.querySelector('input[name="payment"]:checked').value;
         let allFieldsFilled = true;
@@ -180,6 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
-    // Initial setup
+
     renderCartItems();
 });
