@@ -15,11 +15,11 @@ var cart_num = Number(cart);
 
 // var add_to_cart = document.getElementById("add-to-cart");
 
-up.addEventListener("click", function(){
+up.addEventListener("click", function () {
     quantity_num++;
     amount_num += 10;
-    if(quantity_num <= 0 || amount_num <= 0) {
-        quantity_num = 0;   
+    if (quantity_num <= 0 || amount_num <= 0) {
+        quantity_num = 0;
         amount_num = 0;
     }
     quantity_element.textContent = `${quantity_num}`;
@@ -27,10 +27,10 @@ up.addEventListener("click", function(){
 });
 
 
-down.addEventListener("click", function(){
+down.addEventListener("click", function () {
     quantity_num--;
     amount_num -= 10;
-    if(quantity_num <= 0 || amount_num <= 0) {
+    if (quantity_num <= 0 || amount_num <= 0) {
         quantity_num = 0;
         amount_num = 0;
     }
@@ -44,8 +44,8 @@ var add_to_cart = document.getElementById("add-to-cart");
 var show_alert = document.getElementById("customAlert");
 var close_alert = document.getElementById("closeAlert");
 show_alert.style.display = "none";
-add_to_cart.addEventListener("click", function(){
-    
+add_to_cart.addEventListener("click", function () {
+
     if (quantity_num > 0) {
         show_alert.style.display = "flex";
         cart_num++;
@@ -58,7 +58,7 @@ add_to_cart.addEventListener("click", function(){
 
 });
 
-close_alert.addEventListener("click", function(){
+close_alert.addEventListener("click", function () {
     show_alert.style.display = "none";
 });
 
@@ -98,9 +98,9 @@ var left_ul = document.getElementById("left_ul");
 document.getElementById("description_final").textContent = des
 
 
-for(let i=0; i<4; i++) {
+for (let i = 0; i < 4; i++) {
     var small_pic = document.getElementById(`top${i}`);
-    if(selectedImages[i] != undefined) {
+    if (selectedImages[i] != undefined) {
         small_pic.setAttribute("src", selectedImages[i]);
     } else {
         var li = document.getElementById(`li${i}`);
@@ -110,11 +110,11 @@ for(let i=0; i<4; i++) {
 
 var bottom_div = document.getElementById("bottom_ul");
 
-for(let j=0; j<5; j++) {
+for (let j = 0; j < 5; j++) {
     var bottom_pic = document.getElementById(`top2_${j}`)
     var bottom_p = document.getElementById(`bottom_p${j}`);
     var rating_bottom = document.getElementById(`rating_bottom${j}`);
-    if(selectedImages[j] != null || names[j] != null) {
+    if (selectedImages[j] != null || names[j] != null) {
         bottom_pic.setAttribute("src", selectedImages[j]);
         bottom_p.textContent = names[j]
         rating_bottom.textContent = selectedRatings[j];
