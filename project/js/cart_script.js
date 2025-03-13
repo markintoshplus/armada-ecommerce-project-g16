@@ -1,153 +1,185 @@
 document.addEventListener('DOMContentLoaded', () => {
-    /**
-     * Function to calculate the total price of the items in the cart
-     * This will also apply the discount process and update the total.
-     */
+    // Cart data and elements
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartList = document.querySelector('.list-of-orders ul');
+    const cartCounter = document.getElementById('cart-counter');
+    let currentItemToDelete = null;
+
+    // Function to update cart counter
+    function updateCartCounter() {
+        cartCounter.textContent = cartItems.length;
+    }
+
+    // Function to render cart items from localStorage
+    function renderCartItems() {
+        cartList.innerHTML = '';
+        cartItems.forEach((item) => {
+            const cartItemHTML = `
+                <li class="cart-item" data-id="${item.id}">
+                    <img src="${item.image}" alt="${item.title}">
+                    <div>
+                        <p class="item-name">${item.title}</p>
+                        <span class="price">$${item.price.toFixed(2)}</span>
+                    </div>
+                    <div class="input-group">
+                        <label>Quantity</label>
+                        <input type="number" value="${item.quantity}" min="1">
+                    </div>
+                    <div class="input-group">
+                        <label>Total</label>
+                        <input type="text" value="$${(item.price * item.quantity).toFixed(2)}" readonly>
+                    </div>
+                    <button class="close">X</button>
+                </li>
+            `;
+            cartList.insertAdjacentHTML('beforeend', cartItemHTML);
+        });
+        updateCartCounter();
+        updateTotals();
+    }
+
+    // Update totals and localStorage
     function updateTotals() {
         let overallTotal = 0;
 
-        document.querySelectorAll('.cart-item').forEach(item => {
-            const price = parseFloat(item.querySelector('.price').textContent.replace('$', ''));
-            const discountInput = item.querySelector('input[type="number"]');
-            let discount = parseInt(discountInput.value);
+        cartItems.forEach((item, index) => {
+            const quantityInput = cartList.children[index]?.querySelector('input[type="number"]');
+            if (!quantityInput) return;
 
-            // Sets the discount limit to a minimum of 1% and a maximum of 30%
-            discount = Math.min(Math.max(discount, 1), 30);
-            discountInput.value = discount;
+            const quantity = parseInt(quantityInput.value) || 1;
+            cartItems[index].quantity = quantity;
 
-            // Calculates the discounted price
-            const discountedPrice = price * (1 - discount / 100);
-            const totalInput = item.querySelector('input[type="text"]');
-            totalInput.value = `$${discountedPrice.toFixed(2)}`;
-
-            // Add all the discounted prices in the cart
-            overallTotal += discountedPrice;
+            const total = item.price * quantity;
+            overallTotal += total;
         });
 
+        localStorage.setItem('cart', JSON.stringify(cartItems));
         document.getElementById('total-amount').textContent = `$${overallTotal.toFixed(2)}`;
     }
 
-    // Update totals when discount input changes
-    document.querySelectorAll('input[type="number"]').forEach(input => {
-        input.addEventListener('input', updateTotals);
+    // Delete item functionality (SweetAlert2)
+    function handleDeleteItem(itemElement) {
+        const itemId = itemElement.dataset.id;
+        cartItems = cartItems.filter(item => item.id !== itemId);
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        renderCartItems();
+    }
+
+    // Event listeners
+    cartList.addEventListener('input', (e) => {
+        if (e.target.matches('input[type="number"]')) {
+            updateTotals();
+        }
     });
 
-    /**
-     * This function checks the selected payment option.
-     * If the option is 'card', it will show the card info form; otherwise, it hides it.
-     */
+    cartList.addEventListener('click', (e) => {
+        if (e.target.classList.contains('close')) {
+            currentItemToDelete = e.target.closest('.cart-item');
+            Swal.fire({
+                title: 'Remove From Cart',
+                text: 'Are you sure you want to remove this item?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Remove Item'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    handleDeleteItem(currentItemToDelete);
+                    Swal.fire(
+                        'Removed!',
+                        'Item has been removed from your cart.',
+                        'success'
+                    );
+                }
+            });
+        }
+    });
+
+    // Payment radio buttons
     const paymentRadios = document.querySelectorAll('input[name="payment"]');
     const cardInfo = document.getElementById('card-info');
-
     paymentRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             cardInfo.style.display = radio.value === 'card' ? 'block' : 'none';
         });
     });
 
-    // Initialize totals on page load
-    updateTotals();
-
-    /**
-     * Order confirmation modal logic
-     */
-    const orderModal = document.getElementById("orderModal");
+    // Order confirmation (SweetAlert2)
     const submitBtn = document.querySelector(".submit_btn");
-    const confirmOrderBtn = document.getElementById("confirmOrderBtn");
-    const cancelOrderBtn = document.getElementById("cancelOrderBtn");
-
-    submitBtn.addEventListener("click", (event) => {
-        event.preventDefault(); // Prevents form submission
-        if (!validateForm()) return;
-        orderModal.style.display = "flex";
-    });
-
-    cancelOrderBtn.addEventListener("click", () => {
-        orderModal.style.display = "none";
-    });
-
-    window.addEventListener("click", (e) => {
-        if (e.target === orderModal) {
-            orderModal.style.display = "none";
-        }
-    });
-
-    confirmOrderBtn.addEventListener("click", () => {
-        alert("Your order has been placed successfully!");
-        orderModal.style.display = "none";
-    });
-
-    /**
-     * Delete confirmation modal logic
-     */
-    let currentItemToDelete = null;
-    const deleteModal = document.getElementById('deleteModal');
-    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-
-    // Show delete modal when clicking the close button
-    document.querySelectorAll('.close').forEach(button => {
-        button.addEventListener('click', (e) => {
-            currentItemToDelete = e.target.closest('.cart-item');
-            deleteModal.style.display = 'flex';
+    if (submitBtn) {
+        submitBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            console.log("Submit button clicked!"); // Check if this log appears
+            if (validateForm()) {
+                console.log("Form is valid");
+                Swal.fire({
+                    title: 'Confirm Your Order',
+                    text: 'Are you sure you want to proceed with your order?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirm Order'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        localStorage.removeItem('cart');
+                        Swal.fire({
+                            title: 'Order Placed!',
+                            text: 'Your order has been placed successfully!',
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            timer: 2500
+                        }).then(() => {
+                            cartItems = [];
+                            renderCartItems();
+                            window.location.href = 'dashboard.html';
+                        });
+                    }
+                });
+            } else {
+                console.log("Form is invalid");
+            }
         });
-    });
-
-    // Function to hide delete modal
-    function hideDeleteModal() {
-        deleteModal.style.display = 'none';
-        currentItemToDelete = null;
     }
 
-    // Update cart counter
-    function updateCartCounter() {
-        const cartCounter = document.getElementById('cart-counter');
-        const cartItems = document.querySelectorAll('.cart-item');
-        cartCounter.textContent = cartItems.length;
-    }
-
-    // Initial count on page load
-    updateCartCounter();
-
-    // Confirm item deletion and update cart
-    confirmDeleteBtn.addEventListener('click', () => {
-        if (currentItemToDelete) {
-            currentItemToDelete.remove();
-            updateCartCounter(); // Update cart counter after removal
-            updateTotals(); // Update total price after removal
-        }
-        hideDeleteModal();
-    });
-
-    // Cancel deletion
-    cancelDeleteBtn.addEventListener('click', hideDeleteModal);
-
-    /**
-     * Form validation
-     */
+    // Form validation
     function validateForm() {
         const paymentType = document.querySelector('input[name="payment"]:checked').value;
         let allFieldsFilled = true;
+        let emptyFields = [];
 
         document.querySelectorAll(".shipping-info input[type='text']").forEach((input) => {
-            if (input.id === "address2") return; // Address 2 is optional
-
-            // For COD, ignore card fields
+            if (input.id === "address2") return;
             if (paymentType === "cod" && input.closest("#card-info")) return;
 
             if (input.value.trim() === "") {
                 allFieldsFilled = false;
-                input.style.border = "2px solid red"; // Highlight empty fields
+                input.style.border = "2px solid red";
+
+                const fieldName = input.placeholder || input.name || "Required field";
+                emptyFields.push(fieldName);
             } else {
-                input.style.border = ""; // Reset border if filled
+                input.style.border = "";
             }
+            console.log(`Input ${input.id} value: ${input.value}, allFieldsFilled: ${allFieldsFilled}`);
         });
 
+        console.log(`allFieldsFilled: ${allFieldsFilled}, emptyFields: ${emptyFields}`);
+
         if (!allFieldsFilled) {
-            alert("Please fill out all required fields before placing your order.");
+            Swal.fire({
+                title: 'Incomplete Form',
+                html: `Please fill out all required fields before placing your order.<br><br>`,
+                icon: 'error',
+                confirmButtonColor: '#3085d6'
+            });
             return false;
         }
-
+        console.log("Validate form returned true");
         return true;
     }
+
+    // Initial setup
+    renderCartItems();
 });
