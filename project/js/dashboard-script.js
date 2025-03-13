@@ -247,3 +247,33 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Get the search form element
+const searchForm = document.querySelector('.search-field');
+const searchInput = searchForm.querySelector('input[type="text"]');
+
+searchForm.addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent form submission
+    const query = searchInput.value.trim().toLowerCase();
+    const cards = document.querySelectorAll('.product-grid .card');
+
+    // If query is empty, show all cards
+    if (query === '') {
+        cards.forEach(card => {
+            card.style.display = 'flex';
+        });
+        return;
+    }
+
+    // Filter the product cards based on game title or genre
+    cards.forEach(card => {
+        const gameName = card.querySelector('.card-title').textContent.toLowerCase();
+        const genre = (card.getAttribute('data-genre') || '').toLowerCase();
+
+        if (gameName.includes(query) || genre.includes(query)) {
+            card.style.display = 'flex';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});
+
