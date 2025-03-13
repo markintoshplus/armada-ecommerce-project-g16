@@ -2,8 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cart data and elements
     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const cartList = document.querySelector('.list-of-orders ul');
+    const searchInput = document.getElementById('searchInput'); 
     const cartCounter = document.getElementById('cart-counter');
     let currentItemToDelete = null;
+
 
     
     function updateCartCounter() {
@@ -14,29 +16,45 @@ document.addEventListener('DOMContentLoaded', () => {
      * Function to get items stored in local storage
      * This will append the items to the page
      */
-    function renderCartItems() {
-        cartList.innerHTML = '';
-        cartItems.forEach((item) => {
-            const cartItemHTML = `
-                <li class="cart-item" data-id="${item.id}">
-                    <img src="${item.image}" alt="${item.title}">
-                    <div>
-                        <p class="item-name">${item.title}</p>
-                        <span class="price">$${item.price.toFixed(2)}</span>
-                    </div>
-                    <div class="input-group">
-                        <label>Quantity</label>
-                        <input type="number" value="${item.quantity}" min="1">
-                    </div>
-                    <div class="input-group">
-                        <label>Total</label>
-                        <input type="text" value="$${(item.price * item.quantity).toFixed(2)}" readonly>
-                    </div>
-                    <button class="close">X</button>
+    function renderCartItems(itemsToRender = cartItems) {
+        cartList.innerHTML = ''; // Clear existing content
+    
+        if (itemsToRender.length === 0) {
+            // Show empty cart message
+            const emptyCartHTML = `
+                <li class="empty-cart-message">
+                    <img src="/project/assets/icons/empty_cart.png" alt="Empty cart">
+                    <h3>Your Cart is Empty</h3>
+                    <p>Looks like you haven't added any items yet</p>
+                    <a href="dashboard.html" class="continue-shopping-btn">Continue Shopping</a>
                 </li>
             `;
-            cartList.insertAdjacentHTML('beforeend', cartItemHTML);
-        });
+            cartList.insertAdjacentHTML('beforeend', emptyCartHTML);
+        } else {
+            // Show regular cart items
+            itemsToRender.forEach((item) => {
+                const cartItemHTML = `
+                    <li class="cart-item" data-id="${item.id}">
+                        <img src="${item.image}" alt="${item.title}">
+                        <div>
+                            <p class="item-name">${item.title}</p>
+                            <span class="price">$${item.price.toFixed(2)}</span>
+                        </div>
+                        <div class="input-group">
+                            <label>Quantity</label>
+                            <input type="number" value="${item.quantity}" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label>Total</label>
+                            <input type="text" value="$${(item.price * item.quantity).toFixed(2)}" readonly>
+                        </div>
+                        <button class="close">X</button>
+                    </li>
+                `;
+                cartList.insertAdjacentHTML('beforeend', cartItemHTML);
+            });
+        }
+    
         updateCartCounter();
         updateTotals();
     }
@@ -190,7 +208,16 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Validate form returned true");
         return true;
     }
-
+     /**
+      * Function to allow search in cart
+      */
+     searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const filteredItems = cartItems.filter(item => 
+            item.title.toLowerCase().includes(searchTerm)
+        );
+        renderCartItems(filteredItems);
+    });
 
     renderCartItems();
 });
