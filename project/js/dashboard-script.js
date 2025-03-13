@@ -161,7 +161,165 @@ get_genre.forEach(genre_name => {
         localStorage.setItem("selectedImages", JSON.stringify(imageSources));
         localStorage.setItem("selected_num", matchingImages.length);
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Check if a user is already logged in on page load
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+        updateNavbarForLoggedInUser(currentUser);
+    }
 
+    // Helper functions for registered users
+    function getRegisteredUsers() {
+        const users = localStorage.getItem('registeredUsers');
+        return users ? JSON.parse(users) : [];
+    }
+
+    function setRegisteredUsers(users) {
+        localStorage.setItem('registeredUsers', JSON.stringify(users));
+    }
+
+    // SIGN UP FUNCTIONALITY
+    const signupForm = document.getElementById('signupForm');
+    signupForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const fullname = signupForm.fullname.value.trim();
+        const username = signupForm.username.value.trim();
+        const email = signupForm.email.value.trim();
+        const password = signupForm.password.value;
+        const passwordConfirm = signupForm.password_confirm.value;
+
+        if (password !== passwordConfirm) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        let users = getRegisteredUsers();
+
+        // Check if username or email already exists
+        if (users.some(user => user.username === username || user.email === email)) {
+            alert("An account with this username or email already exists.");
+            return;
+        }
+
+        // Create a new user object
+        const newUser = { fullname, username, email, password };
+        users.push(newUser);
+        setRegisteredUsers(users);
+
+        // Set the new user as the current logged in user
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+
+        alert("Signup successful! You are now logged in.");
+        signupForm.reset();
+        closeModal('signup-modal');
+        updateNavbarForLoggedInUser(newUser);
+    });
+
+    // LOGIN FUNCTIONALITY
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const usernameOrEmail = loginForm.username.value.trim();
+        const password = loginForm.password.value;
+
+        const users = getRegisteredUsers();
+        if (users.length === 0) {
+            alert("No registered users found. Please sign up first.");
+            return;
+        }
+
+        // Find the user that matches the entered username/email and password
+        const foundUser = users.find(user =>
+            (user.username === usernameOrEmail || user.email === usernameOrEmail) &&
+            user.password === password
+        );
+
+        if (foundUser) {
+            alert("Login successful!");
+            loginForm.reset();
+            closeModal('login-modal');
+            localStorage.setItem('currentUser', JSON.stringify(foundUser));
+            updateNavbarForLoggedInUser(foundUser);
+        } else {
+            alert("Invalid credentials. Please try again.");
+        }
+    });
+
+    // Helper function to close a modal by id
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Update the navbar to show the logged in state
+    function updateNavbarForLoggedInUser(user) {
+        // Hide the default login and signup buttons
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        loginBtn.style.display = "none";
+        signupBtn.style.display = "none";
+
+        // Create a container for the logged in user's info if it doesn't already exist
+        let userInfoContainer = document.getElementById('user-info');
+        if (!userInfoContainer) {
+            userInfoContainer = document.createElement('div');
+            userInfoContainer.id = 'user-info';
+            userInfoContainer.style.display = "flex";
+            userInfoContainer.style.alignItems = "center";
+            userInfoContainer.style.gap = "0.5rem";
+            // Append the container to the navbar (adjust where you want it to appear)
+            const navbar = document.querySelector('nav');
+            navbar.appendChild(userInfoContainer);
+        }
+        userInfoContainer.innerHTML = `<span>Welcome, ${user.username}!</span>`;
+
+        // Create and add a logout button
+        const logoutBtn = document.createElement('button');
+        logoutBtn.textContent = "Log Out";
+        logoutBtn.style.padding = "0.5rem 1rem";
+        logoutBtn.style.borderRadius = "10px";
+        logoutBtn.style.border = "none";
+        logoutBtn.style.backgroundColor = "#b8ace9";
+        logoutBtn.style.color = "#5305b3";
+        logoutBtn.style.cursor = "pointer";
+        logoutBtn.addEventListener('click', function () {
+            // Remove only the current user so the registered data remains for future logins
+            localStorage.removeItem('currentUser');
+            location.reload();
+        });
+        userInfoContainer.appendChild(logoutBtn);
+    }
+});
+
+// Get the search form element
+const searchForm = document.querySelector('.search-field');
+const searchInput = searchForm.querySelector('input[type="text"]');
+
+searchForm.addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent form submission
+    const query = searchInput.value.trim().toLowerCase();
+    const cards = document.querySelectorAll('.product-grid .card');
+
+    // If query is empty, show all cards
+    if (query === '') {
+        cards.forEach(card => {
+            card.style.display = 'flex';
+        });
+        return;
+    }
+
+    // Filter the product cards based on game title or genre
+    cards.forEach(card => {
+        const gameName = card.querySelector('.card-title').textContent.toLowerCase();
+        const genre = (card.getAttribute('data-genre') || '').toLowerCase();
+
+        if (gameName.includes(query) || genre.includes(query)) {
+            card.style.display = 'flex';
+        } else {
+            card.style.display = 'none';
+        }
     });
 });
 
