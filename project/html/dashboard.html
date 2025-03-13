@@ -3,208 +3,383 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Layout</title>
+    <title>Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dashboard-styles.css">
 </head>
 
 <body>
     <!-- Sidebar -->
-    <div class="sidebar">
+    <aside class="sidebar">
         <a href="#"><img src="../assets/logo/logo.png" alt="Logo"></a>
-    </div>
+    </aside>
 
     <!-- Main Container -->
     <div class="main-container">
         <!-- Navbar -->
-        <nav>
+        <nav role="navigation">
             <div class="navbar-brand">
                 <a href="#"><img src="../assets/logo/logo1.png" alt="Logo"></a>
                 <div class="navbar-text">Let's find your next favorite game.</div>
             </div>
             <div class="navbar-btn">
-                <a href="#" class="log-in-btn">Log In</a>
-                <a href="#" class="sign-up-btn">Sign Up</a>
+                <a href="#" id="login-btn" class="log-in-btn">Log In</a>
+                <a href="#" id="signup-btn" class="sign-up-btn">Sign Up</a>
             </div>
         </nav>
 
-        <main>
+        <main role="main">
             <!-- Search Row -->
-            <div class="search-section">
+            <section class="search-section">
                 <form class="search-field">
                     <input type="text" placeholder="Search for products...">
-                    <button type="submit" class="search-btn"><img src="../assets/icons/search.png" alt="Search icon"></button>
+                    <button type="submit" class="search-btn"><img src="../assets/icons/search.png"
+                            alt="Search icon"></button>
                 </form>
                 <a href="#" class="cart-btn"><img src="../assets/icons/cart.png" alt="Cart icon">Cart</a>
-            </div>
+            </section>
 
-            <!-- Content Row -->
-            <div class="content-section">
-                <!-- Categories Column -->
-                <div class="categories">
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Categories Section -->
+                <section class="categories-section">
                     <h5>Categories</h5>
                     <ul>
                         <li class="genre-item">
-                            <div>
+                            <a href="#">
                                 <img src="../assets/icons/genre-icon/all.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">All Genres</p>
-                            </div>
+                                <span class="genre-count"></span>
+                            </a>
                         </li>
                         <li class="genre-item">
-                            <div>
+                            <a href="#">
                                 <img src="../assets/icons/genre-icon/action.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">Action</p>
-                            </div>
+                                <span class="genre-count"></span>
+                            </a>
                         </li>
                         <li class="genre-item">
-                            <div>
+                            <a href="#">
                                 <img src="../assets/icons/genre-icon/adventure.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">Adventure</p>
-                            </div>
+                                <span class="genre-count"></span>
+                            </a>
                         </li>
-
                         <li class="genre-item">
-                            <div>
+                            <a href="#">
+                                <img src="../assets/icons/genre-icon/fighting.png" alt="icon" class="genre-icon">
+                                <p class="genre-name">Fighting</p>
+                                <span class="genre-count"></span>
+                            </a>
+                        </li>
+                        <li class="genre-item">
+                            <a href="#">
                                 <img src="../assets/icons/genre-icon/rpg.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">Role Playing</p>
-                            </div>
+                                <span class="genre-count"></span>
+                            </a>
                         </li>
                         <li class="genre-item">
-                            <div>
+                            <a href="#">
                                 <img src="../assets/icons/genre-icon/sports.png" alt="icon" class="genre-icon">
                                 <p class="genre-name">Sports</p>
-                            </div>
+                                <span class="genre-count"></span>
+                            </a>
                         </li>
                         <li class="genre-item">
-                            <div>
-                                <img src="../assets/icons/genre-icon/strategy.png" alt="icon" class="genre-icon">
-                                <p class="genre-name">Strategy</p>
-                            </div>
+                            <a href="#">
+                                <img src="../assets/icons/genre-icon/survival.png" alt="icon" class="genre-icon">
+                                <p class="genre-name">Survival</p>
+                                <span class="genre-count"></span>
+                            </a>
                         </li>
                         <!-- Add more genres as needed -->
                     </ul>
-                </div>
+                </section>
 
-                <!-- Products Column -->
-                <div class="products">
+                <!-- Products Section -->
+                <section class="products-section">
                     <h5>All Products</h5>
                     <div class="product-grid">
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Role Playing">
                             <img src="../assets/game-covers/mh-wilds.png" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Monster Hunter Wilds</h5>
                                 <p class="card-text">$19.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">13 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Role Playing">
                             <img src="../assets/game-covers/bg3.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Baldur's Gate 3</h5>
                                 <p class="card-text">$29.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <p class="user-rating">20 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Sports">
                             <img src="../assets/game-covers/2k25.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">NBA 2K25</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">16 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Action">
                             <img src="../assets/game-covers/spiderman2.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Spiderman 2</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">30 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Role Playing">
                             <img src="../assets/game-covers/elden-ring.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Elden Ring</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">100 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Action">
                             <img src="../assets/game-covers/dmc5.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Devil May Cry 5</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <p class="user-rating">60 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Role Playing">
                             <img src="../assets/game-covers/ffxvi.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Final Fantasy XVI</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">15 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Adventure">
                             <img src="../assets/game-covers/minecraft.png" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Minecraft</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">22 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Adventure">
                             <img src="../assets/game-covers/split-fiction.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Split Fiction</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">69 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Survival">
                             <img src="../assets/game-covers/rust.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Rust</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">5 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Adventure">
                             <img src="../assets/game-covers/firewatch.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Firewatch</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">3 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Survival">
                             <img src="../assets/game-covers/stardew.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Stardew Valley</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <p class="user-rating">47 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Role Playing">
                             <img src="../assets/game-covers/kcd2.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Kingdom Come: Deliverance 2</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">10 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Adventure">
                             <img src="../assets/game-covers/rdr2.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Red Dead Redemption 2</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <p class="user-rating">100 ratings</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="card">
+                        <a href="#" class="card" data-genre="Fighting">
                             <img src="../assets/game-covers/tekken8.jpg" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">Tekken 8</h5>
                                 <p class="card-text">$39.99</p>
+                                <div class="star-rating">
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o checked"></span>
+                                    <span class="fa fa-star-o"></span>
+                                    <p class="user-rating">65 ratings</p>
+                                </div>
                             </div>
                         </a>
 
                         <!-- Add additional cards as needed -->
                     </div>
-                </div>
-            </div>
+                    <div class="pagination">
+                        <a href="#">&laquo;</a>
+                        <a href="#">1</a>
+                        <a class="active" href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">6</a>
+                        <a href="#">&raquo;</a>
+                    </div>
+                </section>
+            </section>
         </main>
     </div>
+
+    <!-- Log In Modal Structure -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form id="loginForm" action="login.php" method="post">
+                <input type="text" name="username" placeholder="Username or Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="submit-btn">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal Structure -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Your Account</h2>
+            <form id="signupForm" action="signup.php" method="post">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password_confirm" placeholder="Confirm Password" required>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/dashboard-script.js"></script>
 </body>
 
 </html>
