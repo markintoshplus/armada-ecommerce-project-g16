@@ -158,9 +158,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /*---------------------------------------------------------
-      Section 4: Product View Data Extraction
-    ----------------------------------------------------------*/
-    // When a product card is clicked, store its details in local storage
+  Section 4: Product View Data Extraction
+----------------------------------------------------------*/
+    // When a product card is clicked, store its complete details in localStorage
     const productCards = document.querySelectorAll('.product-grid .card');
     productCards.forEach(card => {
         card.addEventListener('click', function (e) {
@@ -171,10 +171,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const imageLocation = this.getAttribute('data-image').trim();
             const price = this.querySelector('.card-text').textContent.trim();
             const cardName = this.querySelector('.card-title').textContent.trim();
-            const cardDes = this.querySelector('.card-title').getAttribute('data-des');
+            const cardDes = this.querySelector('.card-title').getAttribute('data-des').trim();
             const rating = this.querySelector('.user-rating').textContent.trim();
 
-            // Build a product object.
+            // Build a complete product object.
             const selectedProduct = {
                 genre: selectedGenre,
                 price: price,
@@ -188,7 +188,6 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct));
 
             // Collect similar items from all cards with the same genre.
-            // (We use the original data attribute value for matching.)
             const matchingCards = document.querySelectorAll(`.card[data-genre="${this.getAttribute('data-genre')}"]`);
             let similarItems = [];
 
@@ -198,11 +197,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (imgSrc !== imageLocation) {
                     const nameText = cardItem.querySelector('.card-title').textContent.trim();
                     const ratingText = cardItem.querySelector('.user-rating').textContent.trim();
+                    const priceText = cardItem.querySelector('.card-text').textContent.trim();
+                    const descriptionText = cardItem.querySelector('.card-title').getAttribute('data-des').trim();
                     similarItems.push({
                         image: imgSrc,
                         name: nameText,
                         rating: ratingText,
-                        genre: selectedGenre // Save the genre for filtering later
+                        genre: selectedGenre, // Save the genre for filtering later
+                        price: priceText,
+                        description: descriptionText
                     });
                 }
             });

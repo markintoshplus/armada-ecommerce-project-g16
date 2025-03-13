@@ -26,6 +26,7 @@
                 <a href="#"><img src="../assets/logo/logo1.png" alt="Logo" /></a>
                 <h6>Let's find your next favorite game.</h6>
             </div>
+            <h2 class="shop-name">The Game Shop</h2>
             <div class="header-right">
                 <a href="#" id="login-btn" class="log-in-btn">Log In</a>
                 <a href="#" id="signup-btn" class="sign-up-btn">Sign Up</a>
@@ -111,6 +112,42 @@
         </div>
     </div>
 
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form id="loginForm" action="login.php" method="post">
+                <input type="text" name="username" placeholder="Username or Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="submit-btn">Log In</button>
+            </form>
+            <p class="modal-switch">
+                Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Your Account</h2>
+            <form id="signupForm" action="signup.php" method="post">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password_confirm" placeholder="Confirm Password" required>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+            <p class="modal-switch">
+                Already have an account? <a href="#" id="switch-to-login">Log In</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/product-view_script.js"></script>
 </body>
 

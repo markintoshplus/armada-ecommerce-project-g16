@@ -1,52 +1,49 @@
-// product-view_script.js
-
 document.addEventListener("DOMContentLoaded", function () {
-    /*---------------------------------------------------------
+    /*==============================
       1) Retrieve and Populate Main Product Details
-    ----------------------------------------------------------*/
+    ==============================*/
     let product = JSON.parse(localStorage.getItem("selectedProduct"));
     if (product) {
-        // Main image, name, genre, price, and description
-        document.getElementById("main_img").setAttribute("src", product.image);
+        // Populate product details
+        document.getElementById("main_img").src = product.image;
         document.getElementById("name").textContent = product.name;
         document.getElementById("genre").textContent = product.genre;
         document.getElementById("price_store").textContent = product.price;
         document.getElementById("description_final").textContent = product.description;
 
-        // User rating text (e.g., "13 ratings")
-        let userRatingText = product.rating || "0 ratings";
-        document.getElementById("userRatingCount").textContent = userRatingText;
+        // Set the user rating text (e.g., "13 ratings")
+        // Ensure your HTML includes an element with id="userRatingCount" inside the star-rating container.
+        const userRatingText = product.rating || "0 ratings";
+        if (document.getElementById("userRatingCount")) {
+            document.getElementById("userRatingCount").textContent = userRatingText;
+        }
 
-        // OPTIONAL: If you want a dynamic star count, parse from rating text
-        // For now, let's just set 4 out of 5 stars as an example
+        // Set star rating (here we use a default value of 4; you can adjust as needed)
         setStarRating(4);
     }
 
     /**
-     * Sets the star icons to show 'starCount' filled stars.
-     * Expects 5 star elements with IDs star1..star5.
-     * @param {number} starCount - Number of filled stars (0-5).
+     * Helper: Sets the star icons to show starCount filled stars out of 5.
+     * Expects star elements with IDs star1, star2, ..., star5.
+     * @param {number} starCount - Number of filled stars (0-5)
      */
     function setStarRating(starCount) {
         for (let i = 1; i <= 5; i++) {
             const starElem = document.getElementById(`star${i}`);
-            if (!starElem) continue; // in case star element doesn't exist
-
+            if (!starElem) continue;
             if (i <= starCount) {
-                // Switch from outline to filled
                 starElem.classList.remove("fa-star-o");
                 starElem.classList.add("fa-star", "checked");
             } else {
-                // Switch back to outline
                 starElem.classList.remove("fa-star", "checked");
                 starElem.classList.add("fa-star-o");
             }
         }
     }
 
-    /*---------------------------------------------------------
-      2) Similar Items Section
-    ----------------------------------------------------------*/
+    /*==============================
+      2) Display Similar Items
+    ==============================*/
     function displaySimilarItems(items) {
         let bottomUl = document.getElementById("bottom_ul");
         bottomUl.innerHTML = ""; // Clear existing items
@@ -81,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
             container.appendChild(titleDiv);
             li.appendChild(container);
 
-            // Clicking a similar item -> update selectedProduct & reload
+            // Make each similar item clickable
             li.addEventListener("click", function () {
                 localStorage.setItem("selectedProduct", JSON.stringify(item));
                 window.location.href = "product-view.html";
@@ -91,93 +88,118 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Retrieve similar items from localStorage
+    // Retrieve similar items from localStorage and filter by matching genre (case-insensitive)
     let similarItems = JSON.parse(localStorage.getItem("similarItems")) || [];
-
-    // Filter similar items to match current product genre (case-insensitive)
     if (product && product.genre) {
-        similarItems = similarItems.filter(
-            item => item.genre.toLowerCase() === product.genre.toLowerCase()
+        similarItems = similarItems.filter(item =>
+            item.genre.toLowerCase() === product.genre.toLowerCase()
         );
     }
-
-    // If no similar items, use fallback
+    // Fallback if no similar items exist
     if (!similarItems || similarItems.length === 0) {
         similarItems = [
-            {
-                image: "../assets/game-covers/bg3.jpg",
-                name: "Baldur's Gate 3",
-                rating: "20 ratings",
-                genre: product ? product.genre : "Role Playing"
-            },
-            {
-                image: "../assets/game-covers/dmc5.jpg",
-                name: "Devil May Cry 5",
-                rating: "60 ratings",
-                genre: product ? product.genre : "Action"
-            }
+            { image: "../assets/game-covers/bg3.jpg", name: "Baldur's Gate 3", rating: "20 ratings", genre: product ? product.genre : "Role Playing" },
+            { image: "../assets/game-covers/dmc5.jpg", name: "Devil May Cry 5", rating: "60 ratings", genre: product ? product.genre : "Action" },
+            { image: "../assets/game-covers/ffxvi.jpg", name: "Final Fantasy XVI", rating: "15 ratings", genre: product ? product.genre : "Role Playing" }
         ];
     }
     displaySimilarItems(similarItems);
 
-    /*---------------------------------------------------------
+    /*==============================
       3) Quantity and Amount Update
-    ----------------------------------------------------------*/
+    ==============================*/
+    // Retrieve unit price as a number (strip non-numeric characters)
+    let unitPrice = 0;
+    if (product && product.price) {
+        unitPrice = parseFloat(product.price.replace(/[^0-9\.]+/g, ''));
+    }
+
     let quantityEl = document.getElementById("quantity");
-    let quantity = Number(quantityEl.textContent);
-
     let amountEl = document.getElementById("total_amount");
-    let amount = Number(amountEl.textContent);
 
-    let cartEl = document.getElementById("cart");
-    let cartCount = Number(cartEl.textContent);
+    // Initialize quantity and amount
+    let quantity = parseInt(quantityEl.textContent) || 0;
+    let amount = unitPrice * quantity;
+    amountEl.textContent = `$${amount.toFixed(2)}`;
 
     let upBtn = document.getElementById("up");
     let downBtn = document.getElementById("down");
 
-    // Increase quantity
     upBtn.addEventListener("click", function () {
         quantity++;
-        amount += 10; // Adjust per-unit price if needed
+        amount = unitPrice * quantity;
         quantityEl.textContent = quantity;
-        amountEl.textContent = `$${amount}`;
+        amountEl.textContent = `$${amount.toFixed(2)}`;
     });
 
-    // Decrease quantity
     downBtn.addEventListener("click", function () {
         quantity--;
-        amount -= 10;
-        if (quantity <= 0 || amount <= 0) {
-            quantity = 0;
-            amount = 0;
-        }
+        if (quantity < 0) quantity = 0;
+        amount = unitPrice * quantity;
         quantityEl.textContent = quantity;
-        amountEl.textContent = `$${amount}`;
+        amountEl.textContent = `$${amount.toFixed(2)}`;
     });
 
-    /*---------------------------------------------------------
-      4) Add to Cart and Custom Alert
-    ----------------------------------------------------------*/
+    /*==============================
+      4) Add to Cart Functionality
+    ==============================*/
     let addToCartBtn = document.getElementById("add-to-cart");
-    let alertBox = document.getElementById("customAlert");
-    let closeAlert = document.getElementById("closeAlert");
-
-    // Initially hide the alert
-    alertBox.style.display = "none";
-
     addToCartBtn.addEventListener("click", function () {
-        if (quantity > 0) {
-            cartCount++;
-            cartEl.textContent = cartCount;
-            alertBox.style.display = "flex";
-            // Optionally store more cart data
-            localStorage.setItem("pass_cardName", product.name);
-            localStorage.setItem("pass_price", product.price);
-            localStorage.setItem("pass_quantity", quantity);
+        if (quantity <= 0) {
+            Swal.fire({
+                title: "Quantity Required",
+                text: "Please select at least 1 item.",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+            return;
         }
-    });
+        if (!product) {
+            Swal.fire({
+                title: "No Product Selected",
+                text: "There is no product to add to your cart.",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+            return;
+        }
 
-    closeAlert.addEventListener("click", function () {
-        alertBox.style.display = "none";
+        // Use unitPrice already extracted above
+        let numericPrice = unitPrice;
+
+        // Retrieve current cart (or initialize empty array)
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Check if product exists in cart (using product.name as identifier)
+        let existingItem = cart.find(item => item.name === product.name);
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            let cartItem = {
+                id: product.id || Date.now(),
+                name: product.name,
+                image: product.image,
+                price: numericPrice,
+                quantity: quantity
+            };
+            cart.push(cartItem);
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Update cart counter if exists (assume element with id "cart" shows count)
+        let cartCounter = document.getElementById("cart");
+        if (cartCounter) {
+            let totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCounter.textContent = totalQty;
+        }
+
+        Swal.fire({
+            title: "Added to Cart!",
+            text: `${product.name} has been added to your cart.`,
+            icon: "success",
+            timer: 1500,
+            showConfirmButton: false
+        });
     });
 });
