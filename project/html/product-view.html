@@ -7,7 +7,6 @@
     <title>Product View</title>
     <link rel="stylesheet" href="../css/product-view.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -20,7 +19,6 @@
                 <a href="#"><img src="../assets/logo/logo1.png" alt="Logo"></a>
                 <h6>Let's find your next favorite game.</h6>
             </div>
-            <!-- <img id="profile" src="../assets/soy/profile.png" alt="profile"> -->
             <div>
                 <a href="#" id="login-btn" class="log-in-btn">Log In</a>
                 <a href="#" id="signup-btn" class="sign-up-btn">Sign Up</a>
@@ -29,25 +27,21 @@
         <section class="main">
             <article class="search">
                 <input type="text" placeholder="Search Products">
-                <a href="../html/cart.html" id="cart-link"><button>Cart (<span id="cart">0</span>)</button></a>
+                <a href="../html/cart.html" id="cart-link">
+                    <button>Cart (<span id="cart">0</span>)</button>
+                </a>
             </article>
-            <a href="dashboard.html"><button class="back"><i class="fas fa-angle-left"></i>All Products
-                    (<span>0</span>)</button></a>
+            <a href="dashboard.html">
+                <button class="back"><i class="fas fa-angle-left"></i>All Products (<span>0</span>)</button>
+            </a>
             <section class="top_row">
+                <!-- Removed gallery UL; only the main image remains -->
                 <div class="top_row_left">
-                    <img src="../assets/soy/burger.jpg" class="main_burger" alt="main burger" id="main_img">
-                    <div>
-                        <ul id="left_ul">
-                            <li id="li3"><img src="../assets/soy/burger.jpg" id="top3" alt="burger"></li>
-                            <li id="li2"><img src="../assets/soy/burger.jpg" id="top2" alt="burger"></li>
-                            <li id="li1"><img src="../assets/soy/burger.jpg" id="top1" alt="burger"></li>
-                            <li id="li0"><img src="../assets/soy/burger.jpg" id="top0" alt="burger"></li>
-                        </ul>
-                    </div>
+                    <img src="../assets/soy/burger.jpg" class="main_burger" alt="Game Cover" id="main_img">
                 </div>
                 <div class="top_row_right">
                     <div class="top_right_text">
-                        <h5 id="name">Vegetables</h5>
+                        <h5 id="name">Game Title</h5>
                         <h6 id="genre"></h6>
                         <div class="stars">
                             <span class="fa fa-star-o checked"></span>
@@ -59,9 +53,7 @@
                         </div>
                         <h6 id="price_store">$ 10</h6>
                         <p class="description" id="description_final">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem facilis
-                            quo qui velit dolores, voluptates nesciunt libero sequi laudantium? Sequi quod a doloremque
-                            distinctio dicta deleniti beatae quos corrupti.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, minima.
                         </p>
                     </div>
                     <div class="top_row_right_bottom">
@@ -85,26 +77,7 @@
                 <p class="similar">Similar Items</p>
                 <article>
                     <ul id="bottom_ul">
-                        <li id="bottom_li0">
-                            <div>
-                                <img class="bottom_pictures" id="top2_0" src="../assets/soy/burger.jpg" alt="image">
-                                <div class="title">
-                                    <div>
-                                        <p id="bottom_p0">Vegetables</p>
-                                        <div class="stars">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/star.png" alt="star">
-                                            <img src="../assets/soy/no_star.png" alt="star">
-                                            <p id="rating_bottom0" class="rating">36 Rating</p>
-                                        </div>
-                                    </div>
-                                    <h6>$ 10</h6>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- Additional similar items... -->
+                        <!-- Similar items will be dynamically populated here -->
                     </ul>
                 </article>
             </section>

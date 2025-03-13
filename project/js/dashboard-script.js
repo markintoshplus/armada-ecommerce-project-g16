@@ -161,48 +161,60 @@ document.addEventListener('DOMContentLoaded', function () {
       Section 4: Product View Data Extraction
     ----------------------------------------------------------*/
     // When a product card is clicked, store its details in local storage
-    const cards = document.querySelectorAll(".card");
-    cards.forEach(card => {
-        card.addEventListener("click", function () {
-            const genre_data = this.getAttribute("data-genre");
-            localStorage.setItem("genre_data", genre_data);
+    const productCards = document.querySelectorAll('.product-grid .card');
+    productCards.forEach(card => {
+        card.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default navigation
 
-            const price = this.querySelector(".card-text").textContent.trim();
-            localStorage.setItem("price", price);
+            // Retrieve details from the clicked card using data attributes and inner text.
+            const selectedGenre = this.getAttribute('data-genre').trim().toLowerCase();
+            const imageLocation = this.getAttribute('data-image').trim();
+            const price = this.querySelector('.card-text').textContent.trim();
+            const cardName = this.querySelector('.card-title').textContent.trim();
+            const cardDes = this.querySelector('.card-title').getAttribute('data-des');
+            const rating = this.querySelector('.user-rating').textContent.trim();
 
-            const card_name = this.querySelector(".card-title").textContent.trim();
-            localStorage.setItem("card_name", card_name);
+            // Build a product object.
+            const selectedProduct = {
+                genre: selectedGenre,
+                price: price,
+                name: cardName,
+                description: cardDes,
+                rating: rating,
+                image: imageLocation
+            };
 
-            const card_des = this.querySelector(".card-title").getAttribute("data-des");
-            localStorage.setItem("des", card_des);
+            // Save the selected product in localStorage.
+            localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct));
 
-            const matchingRatings = document.querySelectorAll(`.card[data-genre="${genre_data}"] .user-rating`);
-            const ratings_arr = [];
-            matchingRatings.forEach(ratingElement => {
-                ratings_arr.push(ratingElement.textContent.trim());
+            // Collect similar items from all cards with the same genre.
+            // (We use the original data attribute value for matching.)
+            const matchingCards = document.querySelectorAll(`.card[data-genre="${this.getAttribute('data-genre')}"]`);
+            let similarItems = [];
+
+            matchingCards.forEach(cardItem => {
+                const imgSrc = cardItem.getAttribute('data-image').trim();
+                // Exclude the clicked product.
+                if (imgSrc !== imageLocation) {
+                    const nameText = cardItem.querySelector('.card-title').textContent.trim();
+                    const ratingText = cardItem.querySelector('.user-rating').textContent.trim();
+                    similarItems.push({
+                        image: imgSrc,
+                        name: nameText,
+                        rating: ratingText,
+                        genre: selectedGenre // Save the genre for filtering later
+                    });
+                }
             });
-            localStorage.setItem("selectedRatings", JSON.stringify(ratings_arr));
 
-            const rating = this.querySelector(".user-rating").textContent.trim();
-            localStorage.setItem("rating", rating);
+            // Save the similar items array in localStorage.
+            localStorage.setItem('similarItems', JSON.stringify(similarItems));
 
-            const matchingImages = document.querySelectorAll(`.card[data-genre="${genre_data}"] img`);
-            const imageSources = [];
-            matchingImages.forEach(img => {
-                imageSources.push(img.getAttribute("src"));
-            });
-
-            const matching_name = document.querySelectorAll(`.card[data-genre="${genre_data}"] .card-title`);
-            const each_name = [];
-            matching_name.forEach(name => {
-                each_name.push(name.textContent.trim());
-            });
-
-            localStorage.setItem("names", JSON.stringify(each_name));
-            localStorage.setItem("selectedImages", JSON.stringify(imageSources));
-            localStorage.setItem("selected_num", matchingImages.length);
+            // Navigate to the product view page.
+            window.location.href = this.getAttribute('href');
         });
     });
+
 
     /*---------------------------------------------------------
       Section 5: User Authentication & Navbar Update
