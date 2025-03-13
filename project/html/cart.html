@@ -8,6 +8,8 @@
         content="Cart page for reviewing selected items, processing billing, and completing checkout.">
     <title>Cart</title>
     <link rel="stylesheet" href="/project/css/cart_style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
 </head>
 
 <body>
@@ -20,10 +22,6 @@
     </header>
     <main>
         <div class="side-bar">
-            <ul>
-       
-
-            </ul>
         </div>
         <section class="list-of-orders">
             <div class="search-cart">
@@ -33,66 +31,8 @@
                 <a href="#"><img src="/project/assets/placeholder_img/icons8-cart-50 (3).png" alt="cart icon"> Cart (<span
                         id="cart-counter">0</span>)</a>
             </div>
-            <ul>
-                <li class="cart-item">
-                    <img src="/project/assets/epic_games/beyond-the-ice-palace-2.jpg" alt="Item">
-                    <div>
-                        <p class="item-name">Beyond The Ice</p>
-                        <span class="price">$10</span>
-                    </div>
-                    <div class="input-group">
-                        <label>Discount</label>
-                        <input type="number" value="0">
-                    </div>
-                    <div class="input-group">
-                        <label>Total</label>
-                        <input type="text" value="">
-                    </div>
-                    <button class="close">X</button>
-                </li>
-                <li class="cart-item">
-                    <img src="/project/assets/epic_games/colony-defense.jpg" alt="Item">
-                    <div>
-                        <p class="item-name">Colony Defense</p>
-                        <span class="price">$80</span>
-                    </div>
-                    <div class="input-group">
-                        <label>Discount</label>
-                        <input type="number" value="20">
-                    </div>
-                    <div class="input-group">
-                        <label>Total</label>
-                        <input type="text" value="">
-                    </div>
-                    <button class="close">X</button>
-                </li>
-                <li class="cart-item">
-                    <img src="/project/assets/epic_games/blade-prince-academY.jpg" alt="Item">
-                    <div>
-                        <p class="item-name">Blade Prince Academy</p>
-                        <span class="price">$45</span>
-                    </div>
-                    <div class="input-group">
-                        <label>Discount</label>
-                        <input type="number" value="20">
-                    </div>
-                    <div class="input-group">
-                        <label>Total</label>
-                        <input type="text" value="">
-                    </div>
-                    <button class="close">X</button>
-                </li>
-                
+            <ul>      
             </ul>
-            <section id="deleteModal" class="modal">
-                <div class="modal-content">
-                    <h3>Remove From Cart</h3>
-                    <p>Are you sure you want to remove this item?</p>
-                    <button id="confirmDeleteBtn" class="btn btn-confirm">Remove Item</button>
-                    <button id="cancelDeleteBtn" class="btn btn-cancel">Cancel</button>
-                </div>
-            </section>
-
         </section>
         <section class="payment-information">
             <form class="shipping-info">
@@ -162,18 +102,12 @@
                 </div>
                 <h3>Total Cost: <span id="total-amount">$0.00</span></h3>
                 <input type="submit" class="submit_btn">
-                <section id="orderModal" class="modal">
-                    <div class="modal-content">
-                        <h3>Confirm Your Order</h3>
-                        <p>Are you sure you want to proceed with your order?</p>
-                        <button id="confirmOrderBtn" class="btn btn-confirm">Confirm Order</button>
-                        <button id="cancelOrderBtn" class="btn btn-cancel">Cancel</button>
-                </section>
                 </div>
             </form>
         </section>
     </main>
     <script src="/project/js/cart_script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
