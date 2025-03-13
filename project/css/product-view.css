@@ -263,14 +263,18 @@ header {
         color: #a1a1a1;
     }
     
-    button {
+    a {
         margin-left: 2%;
+    }
+
+    button {
         padding: 0.7rem;
         border-radius: 8px;
         border: none;
         background-color: #9c89ff;
         color: white;
         font-weight: 100;
+        white-space: nowrap;
     }
 }
 
