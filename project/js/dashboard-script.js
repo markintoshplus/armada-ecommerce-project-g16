@@ -11,7 +11,7 @@ genreLinks.forEach(link => {
         // Call filter function with the selected genre
         filterByGenre(selectedGenre);
     });
-}); 
+});
 
 function filterByGenre(genre) {
     // Get all product cards from the grid container
@@ -119,23 +119,23 @@ window.addEventListener("click", (event) => {
 var get_genre = document.querySelectorAll(".card");
 
 get_genre.forEach(genre_name => {
-    genre_name.addEventListener("click", function() {
+    genre_name.addEventListener("click", function () {
         var genre_data = this.getAttribute("data-genre");
-        localStorage.setItem("genre_data", genre_data); 
+        localStorage.setItem("genre_data", genre_data);
 
         var price = this.querySelector(".card-text").textContent.trim();
-        localStorage.setItem("price", price); 
+        localStorage.setItem("price", price);
 
         var card_name = this.querySelector(".card-title").textContent.trim();
         localStorage.setItem("card_name", card_name);
 
         var card_des = this.querySelector(".card-title").getAttribute("data-des");
         localStorage.setItem("des", card_des);
-        
+
         var matchingRatings = document.querySelectorAll(`.card[data-genre="${genre_data}"] .user-rating`);
         var ratings_arr = [];
         matchingRatings.forEach(ratingElement => {
-            ratings_arr.push(ratingElement.textContent.trim()); 
+            ratings_arr.push(ratingElement.textContent.trim());
         });
         localStorage.setItem("selectedRatings", JSON.stringify(ratings_arr));
 
@@ -144,10 +144,10 @@ get_genre.forEach(genre_name => {
 
         var matchingImages = document.querySelectorAll(`.card[data-genre="${genre_data}"] img`);
 
-        var imageSources = []; 
+        var imageSources = [];
         matchingImages.forEach(img => {
 
-            imageSources.push(img.getAttribute("src")); 
+            imageSources.push(img.getAttribute("src"));
         });
 
         var matching_name = document.querySelectorAll(`.card[data-genre="${genre_data}"] .card-title`);
@@ -161,165 +161,167 @@ get_genre.forEach(genre_name => {
         localStorage.setItem("selectedImages", JSON.stringify(imageSources));
         localStorage.setItem("selected_num", matchingImages.length);
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Check if a user is already logged in on page load
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-        updateNavbarForLoggedInUser(currentUser);
-    }
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if a user is already logged in on page load
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser) {
+                updateNavbarForLoggedInUser(currentUser);
+            }
 
-    // Helper functions for registered users
-    function getRegisteredUsers() {
-        const users = localStorage.getItem('registeredUsers');
-        return users ? JSON.parse(users) : [];
-    }
+            // Helper functions for registered users
+            function getRegisteredUsers() {
+                const users = localStorage.getItem('registeredUsers');
+                return users ? JSON.parse(users) : [];
+            }
 
-    function setRegisteredUsers(users) {
-        localStorage.setItem('registeredUsers', JSON.stringify(users));
-    }
+            function setRegisteredUsers(users) {
+                localStorage.setItem('registeredUsers', JSON.stringify(users));
+            }
 
-    // SIGN UP FUNCTIONALITY
-    const signupForm = document.getElementById('signupForm');
-    signupForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const fullname = signupForm.fullname.value.trim();
-        const username = signupForm.username.value.trim();
-        const email = signupForm.email.value.trim();
-        const password = signupForm.password.value;
-        const passwordConfirm = signupForm.password_confirm.value;
 
-        if (password !== passwordConfirm) {
-            alert("Passwords do not match!");
-            return;
-        }
+            // SIGN UP FUNCTIONALITY
+            const signupForm = document.getElementById('signupForm');
+            signupForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const fullname = signupForm.fullname.value.trim();
+                const username = signupForm.username.value.trim();
+                const email = signupForm.email.value.trim();
+                const password = signupForm.password.value;
+                const passwordConfirm = signupForm.password_confirm.value;
 
-        let users = getRegisteredUsers();
+                if (password !== passwordConfirm) {
+                    alert("Passwords do not match!");
+                    return;
+                }
 
-        // Check if username or email already exists
-        if (users.some(user => user.username === username || user.email === email)) {
-            alert("An account with this username or email already exists.");
-            return;
-        }
+                let users = getRegisteredUsers();
 
-        // Create a new user object
-        const newUser = { fullname, username, email, password };
-        users.push(newUser);
-        setRegisteredUsers(users);
+                // Check if username or email already exists
+                if (users.some(user => user.username === username || user.email === email)) {
+                    alert("An account with this username or email already exists.");
+                    return;
+                }
 
-        // Set the new user as the current logged in user
-        localStorage.setItem('currentUser', JSON.stringify(newUser));
+                // Create a new user object
+                const newUser = { fullname, username, email, password };
+                users.push(newUser);
+                setRegisteredUsers(users);
 
-        alert("Signup successful! You are now logged in.");
-        signupForm.reset();
-        closeModal('signup-modal');
-        updateNavbarForLoggedInUser(newUser);
-    });
+                // Set the new user as the current logged in user
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
 
-    // LOGIN FUNCTIONALITY
-    const loginForm = document.getElementById('loginForm');
-    loginForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const usernameOrEmail = loginForm.username.value.trim();
-        const password = loginForm.password.value;
+                alert("Signup successful! You are now logged in.");
+                signupForm.reset();
+                closeModal('signup-modal');
+                updateNavbarForLoggedInUser(newUser);
+            });
 
-        const users = getRegisteredUsers();
-        if (users.length === 0) {
-            alert("No registered users found. Please sign up first.");
-            return;
-        }
+            // LOGIN FUNCTIONALITY
+            const loginForm = document.getElementById('loginForm');
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const usernameOrEmail = loginForm.username.value.trim();
+                const password = loginForm.password.value;
 
-        // Find the user that matches the entered username/email and password
-        const foundUser = users.find(user =>
-            (user.username === usernameOrEmail || user.email === usernameOrEmail) &&
-            user.password === password
-        );
+                const users = getRegisteredUsers();
+                if (users.length === 0) {
+                    alert("No registered users found. Please sign up first.");
+                    return;
+                }
 
-        if (foundUser) {
-            alert("Login successful!");
-            loginForm.reset();
-            closeModal('login-modal');
-            localStorage.setItem('currentUser', JSON.stringify(foundUser));
-            updateNavbarForLoggedInUser(foundUser);
-        } else {
-            alert("Invalid credentials. Please try again.");
-        }
-    });
+                // Find the user that matches the entered username/email and password
+                const foundUser = users.find(user =>
+                    (user.username === usernameOrEmail || user.email === usernameOrEmail) &&
+                    user.password === password
+                );
 
-    // Helper function to close a modal by id
-    function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.style.display = "none";
-        }
-    }
+                if (foundUser) {
+                    alert("Login successful!");
+                    loginForm.reset();
+                    closeModal('login-modal');
+                    localStorage.setItem('currentUser', JSON.stringify(foundUser));
+                    updateNavbarForLoggedInUser(foundUser);
+                } else {
+                    alert("Invalid credentials. Please try again.");
+                }
+            });
 
-    // Update the navbar to show the logged in state
-    function updateNavbarForLoggedInUser(user) {
-        // Hide the default login and signup buttons
-        const loginBtn = document.getElementById('login-btn');
-        const signupBtn = document.getElementById('signup-btn');
-        loginBtn.style.display = "none";
-        signupBtn.style.display = "none";
+            // Helper function to close a modal by id
+            function closeModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = "none";
+                }
+            }
 
-        // Create a container for the logged in user's info if it doesn't already exist
-        let userInfoContainer = document.getElementById('user-info');
-        if (!userInfoContainer) {
-            userInfoContainer = document.createElement('div');
-            userInfoContainer.id = 'user-info';
-            userInfoContainer.style.display = "flex";
-            userInfoContainer.style.alignItems = "center";
-            userInfoContainer.style.gap = "0.5rem";
-            // Append the container to the navbar (adjust where you want it to appear)
-            const navbar = document.querySelector('nav');
-            navbar.appendChild(userInfoContainer);
-        }
-        userInfoContainer.innerHTML = `<span>Welcome, ${user.username}!</span>`;
+            // Update the navbar to show the logged in state
+            function updateNavbarForLoggedInUser(user) {
+                // Hide the default login and signup buttons
+                const loginBtn = document.getElementById('login-btn');
+                const signupBtn = document.getElementById('signup-btn');
+                loginBtn.style.display = "none";
+                signupBtn.style.display = "none";
 
-        // Create and add a logout button
-        const logoutBtn = document.createElement('button');
-        logoutBtn.textContent = "Log Out";
-        logoutBtn.style.padding = "0.5rem 1rem";
-        logoutBtn.style.borderRadius = "10px";
-        logoutBtn.style.border = "none";
-        logoutBtn.style.backgroundColor = "#b8ace9";
-        logoutBtn.style.color = "#5305b3";
-        logoutBtn.style.cursor = "pointer";
-        logoutBtn.addEventListener('click', function () {
-            // Remove only the current user so the registered data remains for future logins
-            localStorage.removeItem('currentUser');
-            location.reload();
+                // Create a container for the logged in user's info if it doesn't already exist
+                let userInfoContainer = document.getElementById('user-info');
+                if (!userInfoContainer) {
+                    userInfoContainer = document.createElement('div');
+                    userInfoContainer.id = 'user-info';
+                    userInfoContainer.style.display = "flex";
+                    userInfoContainer.style.alignItems = "center";
+                    userInfoContainer.style.gap = "0.5rem";
+                    // Append the container to the navbar (adjust where you want it to appear)
+                    const navbar = document.querySelector('nav');
+                    navbar.appendChild(userInfoContainer);
+                }
+                userInfoContainer.innerHTML = `<span>Welcome, ${user.username}!</span>`;
+
+                // Create and add a logout button
+                const logoutBtn = document.createElement('button');
+                logoutBtn.textContent = "Log Out";
+                logoutBtn.style.padding = "0.5rem 1rem";
+                logoutBtn.style.borderRadius = "10px";
+                logoutBtn.style.border = "none";
+                logoutBtn.style.backgroundColor = "#b8ace9";
+                logoutBtn.style.color = "#5305b3";
+                logoutBtn.style.cursor = "pointer";
+                logoutBtn.addEventListener('click', function () {
+                    // Remove only the current user so the registered data remains for future logins
+                    localStorage.removeItem('currentUser');
+                    location.reload();
+                });
+                userInfoContainer.appendChild(logoutBtn);
+            }
         });
-        userInfoContainer.appendChild(logoutBtn);
-    }
-});
 
-// Get the search form element
-const searchForm = document.querySelector('.search-field');
-const searchInput = searchForm.querySelector('input[type="text"]');
+        // Get the search form element
+        const searchForm = document.querySelector('.search-field');
+        const searchInput = searchForm.querySelector('input[type="text"]');
 
-searchForm.addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form submission
-    const query = searchInput.value.trim().toLowerCase();
-    const cards = document.querySelectorAll('.product-grid .card');
+        searchForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent form submission
+            const query = searchInput.value.trim().toLowerCase();
+            const cards = document.querySelectorAll('.product-grid .card');
 
-    // If query is empty, show all cards
-    if (query === '') {
-        cards.forEach(card => {
-            card.style.display = 'flex';
+            // If query is empty, show all cards
+            if (query === '') {
+                cards.forEach(card => {
+                    card.style.display = 'flex';
+                });
+                return;
+            }
+
+            // Filter the product cards based on game title or genre
+            cards.forEach(card => {
+                const gameName = card.querySelector('.card-title').textContent.toLowerCase();
+                const genre = (card.getAttribute('data-genre') || '').toLowerCase();
+
+                if (gameName.includes(query) || genre.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
-        return;
-    }
-
-    // Filter the product cards based on game title or genre
-    cards.forEach(card => {
-        const gameName = card.querySelector('.card-title').textContent.toLowerCase();
-        const genre = (card.getAttribute('data-genre') || '').toLowerCase();
-
-        if (gameName.includes(query) || genre.includes(query)) {
-            card.style.display = 'flex';
-        } else {
-            card.style.display = 'none';
-        }
     });
 });
-
