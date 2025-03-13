@@ -1,23 +1,55 @@
+// product-view_script.js
+
 document.addEventListener("DOMContentLoaded", function () {
-    // ------------------------------
-    // Retrieve and Populate Main Product Details
-    // ------------------------------
+    /*---------------------------------------------------------
+      1) Retrieve and Populate Main Product Details
+    ----------------------------------------------------------*/
     let product = JSON.parse(localStorage.getItem("selectedProduct"));
     if (product) {
+        // Main image, name, genre, price, and description
         document.getElementById("main_img").setAttribute("src", product.image);
         document.getElementById("name").textContent = product.name;
-        document.getElementById("price_store").textContent = product.price;
         document.getElementById("genre").textContent = product.genre;
-        document.getElementById("ratings").textContent = product.rating;
+        document.getElementById("price_store").textContent = product.price;
         document.getElementById("description_final").textContent = product.description;
+
+        // User rating text (e.g., "13 ratings")
+        let userRatingText = product.rating || "0 ratings";
+        document.getElementById("userRatingCount").textContent = userRatingText;
+
+        // OPTIONAL: If you want a dynamic star count, parse from rating text
+        // For now, let's just set 4 out of 5 stars as an example
+        setStarRating(4);
     }
 
-    // ------------------------------
-    // Similar Items Section
-    // ------------------------------
+    /**
+     * Sets the star icons to show 'starCount' filled stars.
+     * Expects 5 star elements with IDs star1..star5.
+     * @param {number} starCount - Number of filled stars (0-5).
+     */
+    function setStarRating(starCount) {
+        for (let i = 1; i <= 5; i++) {
+            const starElem = document.getElementById(`star${i}`);
+            if (!starElem) continue; // in case star element doesn't exist
+
+            if (i <= starCount) {
+                // Switch from outline to filled
+                starElem.classList.remove("fa-star-o");
+                starElem.classList.add("fa-star", "checked");
+            } else {
+                // Switch back to outline
+                starElem.classList.remove("fa-star", "checked");
+                starElem.classList.add("fa-star-o");
+            }
+        }
+    }
+
+    /*---------------------------------------------------------
+      2) Similar Items Section
+    ----------------------------------------------------------*/
     function displaySimilarItems(items) {
-        let bottom_ul = document.getElementById("bottom_ul");
-        bottom_ul.innerHTML = ""; // Clear previous items
+        let bottomUl = document.getElementById("bottom_ul");
+        bottomUl.innerHTML = ""; // Clear existing items
 
         items.forEach(item => {
             let li = document.createElement("li");
@@ -48,79 +80,104 @@ document.addEventListener("DOMContentLoaded", function () {
 
             container.appendChild(titleDiv);
             li.appendChild(container);
-            bottom_ul.appendChild(li);
+
+            // Clicking a similar item -> update selectedProduct & reload
+            li.addEventListener("click", function () {
+                localStorage.setItem("selectedProduct", JSON.stringify(item));
+                window.location.href = "product-view.html";
+            });
+
+            bottomUl.appendChild(li);
         });
     }
 
-    // Retrieve similar items from localStorage.
+    // Retrieve similar items from localStorage
     let similarItems = JSON.parse(localStorage.getItem("similarItems")) || [];
-    // Filter similar items to only include those with the same genre as the current product.
-    similarItems = similarItems.filter(item => item.genre === product.genre);
 
+    // Filter similar items to match current product genre (case-insensitive)
+    if (product && product.genre) {
+        similarItems = similarItems.filter(
+            item => item.genre.toLowerCase() === product.genre.toLowerCase()
+        );
+    }
+
+    // If no similar items, use fallback
     if (!similarItems || similarItems.length === 0) {
-        // Fallback: if no similar items are found, use a preset list.
         similarItems = [
-            { image: "../assets/game-covers/bg3.jpg", name: "Baldur's Gate 3", rating: "20 ratings", genre: product.genre },
-            { image: "../assets/game-covers/dmc5.jpg", name: "Devil May Cry 5", rating: "60 ratings", genre: product.genre },
-            { image: "../assets/game-covers/ffxvi.jpg", name: "Final Fantasy XVI", rating: "15 ratings", genre: product.genre }
+            {
+                image: "../assets/game-covers/bg3.jpg",
+                name: "Baldur's Gate 3",
+                rating: "20 ratings",
+                genre: product ? product.genre : "Role Playing"
+            },
+            {
+                image: "../assets/game-covers/dmc5.jpg",
+                name: "Devil May Cry 5",
+                rating: "60 ratings",
+                genre: product ? product.genre : "Action"
+            }
         ];
     }
     displaySimilarItems(similarItems);
 
-    // ------------------------------
-    // Quantity and Amount Update
-    // ------------------------------
-    let quantity_element = document.getElementById("quantity");
-    let quantity_num = Number(quantity_element.textContent);
+    /*---------------------------------------------------------
+      3) Quantity and Amount Update
+    ----------------------------------------------------------*/
+    let quantityEl = document.getElementById("quantity");
+    let quantity = Number(quantityEl.textContent);
 
-    let amount_element = document.getElementById("total_amount");
-    let amount_num = Number(amount_element.textContent);
+    let amountEl = document.getElementById("total_amount");
+    let amount = Number(amountEl.textContent);
 
-    let cart_element = document.getElementById("cart");
-    let cart_num = Number(cart_element.textContent);
+    let cartEl = document.getElementById("cart");
+    let cartCount = Number(cartEl.textContent);
 
-    let up = document.getElementById("up");
-    let down = document.getElementById("down");
+    let upBtn = document.getElementById("up");
+    let downBtn = document.getElementById("down");
 
-    up.addEventListener("click", function () {
-        quantity_num++;
-        amount_num += 10; // Adjust per-unit price if needed.
-        quantity_element.textContent = `${quantity_num}`;
-        amount_element.textContent = `$${amount_num}`;
+    // Increase quantity
+    upBtn.addEventListener("click", function () {
+        quantity++;
+        amount += 10; // Adjust per-unit price if needed
+        quantityEl.textContent = quantity;
+        amountEl.textContent = `$${amount}`;
     });
 
-    down.addEventListener("click", function () {
-        quantity_num--;
-        amount_num -= 10;
-        if (quantity_num <= 0 || amount_num <= 0) {
-            quantity_num = 0;
-            amount_num = 0;
+    // Decrease quantity
+    downBtn.addEventListener("click", function () {
+        quantity--;
+        amount -= 10;
+        if (quantity <= 0 || amount <= 0) {
+            quantity = 0;
+            amount = 0;
         }
-        quantity_element.textContent = `${quantity_num}`;
-        amount_element.textContent = `$${amount_num}`;
+        quantityEl.textContent = quantity;
+        amountEl.textContent = `$${amount}`;
     });
 
-    // ------------------------------
-    // Add to Cart and Custom Alert
-    // ------------------------------
-    let add_to_cart = document.getElementById("add-to-cart");
-    let show_alert = document.getElementById("customAlert");
-    let close_alert = document.getElementById("closeAlert");
-    show_alert.style.display = "none";
+    /*---------------------------------------------------------
+      4) Add to Cart and Custom Alert
+    ----------------------------------------------------------*/
+    let addToCartBtn = document.getElementById("add-to-cart");
+    let alertBox = document.getElementById("customAlert");
+    let closeAlert = document.getElementById("closeAlert");
 
-    add_to_cart.addEventListener("click", function () {
-        if (quantity_num > 0) {
-            show_alert.style.display = "flex";
-            cart_num++;
-            cart_element.textContent = `${cart_num}`;
-            // Optionally, store selected product details with quantity.
+    // Initially hide the alert
+    alertBox.style.display = "none";
+
+    addToCartBtn.addEventListener("click", function () {
+        if (quantity > 0) {
+            cartCount++;
+            cartEl.textContent = cartCount;
+            alertBox.style.display = "flex";
+            // Optionally store more cart data
             localStorage.setItem("pass_cardName", product.name);
             localStorage.setItem("pass_price", product.price);
-            localStorage.setItem("pass_quantity", quantity_num);
+            localStorage.setItem("pass_quantity", quantity);
         }
     });
 
-    close_alert.addEventListener("click", function () {
-        show_alert.style.display = "none";
+    closeAlert.addEventListener("click", function () {
+        alertBox.style.display = "none";
     });
 });
