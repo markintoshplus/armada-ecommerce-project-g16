@@ -14,361 +14,358 @@
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <a href="dashboard.html"><img src="../assets/logo/logo.png" alt="Logo"></a>
-    </aside>
+    <!-- Navbar -->
+    <nav role="navigation">
+        <div class="navbar-brand">
+            <a href="dashboard.html"><img src="../assets/logo/logo1.png" alt="Logo"></a>
+            <div class="navbar-text">Let's find your next favorite game.</div>
+        </div>
+        <div class="navbar-shop-name">
+            <a href="dashboard.html"><img src="../assets/logo/logo.png" alt="Logo">The Game Shop</a>
+        </div>
+        <div class="navbar-btn">
+            <a href="#" id="login-btn" class="log-in-btn">Log In</a>
+            <a href="#" id="signup-btn" class="sign-up-btn">Sign Up</a>
+        </div>
+    </nav>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Navbar -->
-        <nav role="navigation">
-            <div class="navbar-brand">
-                <a href="dashboard.html"><img src="../assets/logo/logo1.png" alt="Logo"></a>
-                <div class="navbar-text">Let's find your next favorite game.</div>
-            </div>
-            <div class="navbar-btn">
-                <a href="#" id="login-btn" class="log-in-btn">Log In</a>
-                <a href="#" id="signup-btn" class="sign-up-btn">Sign Up</a>
-            </div>
-        </nav>
+    <main role="main">
+        <!-- Search Row -->
+        <section class="search-section">
+            <form class="search-field">
+                <input type="text" placeholder="Search for products...">
+                <button type="submit" class="search-btn"><img src="../assets/icons/search.png"
+                        alt="Search icon"></button>
+            </form>
+            <a href="cart.html" class="cart-btn"><img src="../assets/icons/cart.png" alt="Cart icon">Cart</a>
+        </section>
 
-        <main role="main">
-            <!-- Search Row -->
-            <section class="search-section">
-                <form class="search-field">
-                    <input type="text" placeholder="Search for products...">
-                    <button type="submit" class="search-btn"><img src="../assets/icons/search.png"
-                            alt="Search icon"></button>
-                </form>
-                <a href="cart.html" class="cart-btn"><img src="../assets/icons/cart.png" alt="Cart icon">Cart</a>
+        <!-- Content Section -->
+        <section class="content-section">
+            <!-- Categories Section -->
+            <section class="categories-section">
+                <h5>Categories</h5>
+                <ul>
+                    <li class="genre-item">
+                        <a href="#">
+                            <img src="../assets/icons/genre-icon/all.png" alt="icon" class="genre-icon">
+                            <p class="genre-name">All Genres</p>
+                            <span class="genre-count"></span>
+                        </a>
+                    </li>
+                    <li class="genre-item">
+                        <a href="#">
+                            <img src="../assets/icons/genre-icon/action.png" alt="icon" class="genre-icon">
+                            <p class="genre-name">Action</p>
+                            <span class="genre-count"></span>
+                        </a>
+                    </li>
+                    <li class="genre-item">
+                        <a href="#">
+                            <img src="../assets/icons/genre-icon/adventure.png" alt="icon" class="genre-icon">
+                            <p class="genre-name">Adventure</p>
+                            <span class="genre-count"></span>
+                        </a>
+                    </li>
+                    <li class="genre-item">
+                        <a href="#">
+                            <img src="../assets/icons/genre-icon/fighting.png" alt="icon" class="genre-icon">
+                            <p class="genre-name">Fighting</p>
+                            <span class="genre-count"></span>
+                        </a>
+                    </li>
+                    <li class="genre-item">
+                        <a href="#">
+                            <img src="../assets/icons/genre-icon/rpg.png" alt="icon" class="genre-icon">
+                            <p class="genre-name">Role Playing</p>
+                            <span class="genre-count"></span>
+                        </a>
+                    </li>
+                    <li class="genre-item">
+                        <a href="#">
+                            <img src="../assets/icons/genre-icon/sports.png" alt="icon" class="genre-icon">
+                            <p class="genre-name">Sports</p>
+                            <span class="genre-count"></span>
+                        </a>
+                    </li>
+                    <li class="genre-item">
+                        <a href="#">
+                            <img src="../assets/icons/genre-icon/survival.png" alt="icon" class="genre-icon">
+                            <p class="genre-name">Survival</p>
+                            <span class="genre-count"></span>
+                        </a>
+                    </li>
+                    <!-- Add more genres as needed -->
+                </ul>
             </section>
 
-            <!-- Content Section -->
-            <section class="content-section">
-                <!-- Categories Section -->
-                <section class="categories-section">
-                    <h5>Categories</h5>
-                    <ul>
-                        <li class="genre-item">
-                            <a href="#">
-                                <img src="../assets/icons/genre-icon/all.png" alt="icon" class="genre-icon">
-                                <p class="genre-name">All Genres</p>
-                                <span class="genre-count"></span>
-                            </a>
-                        </li>
-                        <li class="genre-item">
-                            <a href="#">
-                                <img src="../assets/icons/genre-icon/action.png" alt="icon" class="genre-icon">
-                                <p class="genre-name">Action</p>
-                                <span class="genre-count"></span>
-                            </a>
-                        </li>
-                        <li class="genre-item">
-                            <a href="#">
-                                <img src="../assets/icons/genre-icon/adventure.png" alt="icon" class="genre-icon">
-                                <p class="genre-name">Adventure</p>
-                                <span class="genre-count"></span>
-                            </a>
-                        </li>
-                        <li class="genre-item">
-                            <a href="#">
-                                <img src="../assets/icons/genre-icon/fighting.png" alt="icon" class="genre-icon">
-                                <p class="genre-name">Fighting</p>
-                                <span class="genre-count"></span>
-                            </a>
-                        </li>
-                        <li class="genre-item">
-                            <a href="#">
-                                <img src="../assets/icons/genre-icon/rpg.png" alt="icon" class="genre-icon">
-                                <p class="genre-name">Role Playing</p>
-                                <span class="genre-count"></span>
-                            </a>
-                        </li>
-                        <li class="genre-item">
-                            <a href="#">
-                                <img src="../assets/icons/genre-icon/sports.png" alt="icon" class="genre-icon">
-                                <p class="genre-name">Sports</p>
-                                <span class="genre-count"></span>
-                            </a>
-                        </li>
-                        <li class="genre-item">
-                            <a href="#">
-                                <img src="../assets/icons/genre-icon/survival.png" alt="icon" class="genre-icon">
-                                <p class="genre-name">Survival</p>
-                                <span class="genre-count"></span>
-                            </a>
-                        </li>
-                        <!-- Add more genres as needed -->
-                    </ul>
-                </section>
-
-                <!-- Products Section -->
-                <section class="products-section">
-                    <h5>All Products</h5>
-                    <div class="product-grid">
-                        <a href="../html/product-view.html" class="card" data-genre="Role Playing">
-                            <img src="../assets/game-covers/mh-wilds.png" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="
+            <!-- Products Section -->
+            <section class="products-section">
+                <h5>All Products</h5>
+                <div class="product-grid">
+                    <a href="../html/product-view.html" class="card" data-genre="Role Playing"
+                        data-image="../assets/game-covers/mh-wilds.png">
+                        <img src="../assets/game-covers/mh-wilds.png" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="
                                 Monster Hunter Wilds is the next installment in Capcom's legendary Monster Hunter franchise. Building upon the success of Monster Hunter World, this game introduces a vast open world with dynamic ecosystems, immersive combat, and unpredictable weather that affects gameplay.
-                                Players step into the role of a hunter, tracking down and battling colossal monsters across expansive landscapes, using a variety of weapons, armor, and strategic skills." 
+                                Players step into the role of a hunter, tracking down and battling colossal monsters across expansive landscapes, using a variety of weapons, armor, and strategic skills."
                                 class="card-title">Monster Hunter Wilds</h5>
-                                <p class="card-text">$19.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">13 ratings</p>
-                                </div>
+                            <p class="card-text">$69.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">13 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Role Playing">
-                            <img src="../assets/game-covers/bg3.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Baldur’s Gate 3 is an epic RPG based on the Dungeons & Dragons (D&D) 5th Edition ruleset. Set in the legendary Forgotten Realms, the game combines deep storytelling, tactical turn-based combat, and player choice in a vast world full of danger, mystery, and powerful magic.
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Role Playing"
+                        data-image="../assets/game-covers/bg3.jpg">
+                        <img src="../assets/game-covers/bg3.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Baldur’s Gate 3 is an epic RPG based on the Dungeons & Dragons (D&D) 5th Edition ruleset. Set in the legendary Forgotten Realms, the game combines deep storytelling, tactical turn-based combat, and player choice in a vast world full of danger, mystery, and powerful magic.
 
-                                Players find themselves infected with a mind flayer tadpole, granting mysterious powers while threatening to transform them into a monster. As you recruit companions, forge alliances, and make moral choices, you must determine your fate and the fate of the world." 
-                                
+                                Players find themselves infected with a mind flayer tadpole, granting mysterious powers while threatening to transform them into a monster. As you recruit companions, forge alliances, and make moral choices, you must determine your fate and the fate of the world."
                                 class="card-title">Baldur's Gate 3</h5>
-                                <p class="card-text">$29.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <p class="user-rating">20 ratings</p>
-                                </div>
+                            <p class="card-text">$49.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <p class="user-rating">20 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Sports">
-                            <img src="../assets/game-covers/2k25.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="NBA 2K25, developed by Visual Concepts and published by 2K, is the latest installment in the renowned basketball simulation series. Released on September 6, 2024, for platforms including Nintendo Switch, PlayStation 4, PlayStation 5, Windows, Xbox One, and Xbox Series X/S, it continues the franchise's tradition of delivering an immersive basketball experience." 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Sports"
+                        data-image="../assets/game-covers/2k25.jpg">
+                        <img src="../assets/game-covers/2k25.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="NBA 2K25, developed by Visual Concepts and published by 2K, is the latest installment in the renowned basketball simulation series. Released on September 6, 2024, for platforms including Nintendo Switch, PlayStation 4, PlayStation 5, Windows, Xbox One, and Xbox Series X/S, it continues the franchise's tradition of delivering an immersive basketball experience."
                                 class="card-title">NBA 2K25</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">z
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">16 ratings</p>
-                                </div>
+                            <p class="card-text">$39.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">16 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Action">
-                            <img src="../assets/game-covers/spiderman2.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Marvel's Spider-Man 2 is an action-adventure game developed by Insomniac Games and published by Sony Interactive Entertainment. Serving as a sequel to the 2018 Marvel's Spider-Man and the 2020 Marvel's Spider-Man: Miles Morales, this installment was initially released exclusively for the PlayStation 5 on October 20, 2023. A Windows version, developed by Nixxes Software, followed on January 30, 2025." 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Action"
+                        data-image="../assets/game-covers/spiderman2.jpg">
+                        <img src="../assets/game-covers/spiderman2.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Marvel's Spider-Man 2 is an action-adventure game developed by Insomniac Games and published by Sony Interactive Entertainment. Serving as a sequel to the 2018 Marvel's Spider-Man and the 2020 Marvel's Spider-Man: Miles Morales, this installment was initially released exclusively for the PlayStation 5 on October 20, 2023. A Windows version, developed by Nixxes Software, followed on January 30, 2025."
                                 class="card-title">Spiderman 2</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">30 ratings</p>
-                                </div>
+                            <p class="card-text">$59.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">30 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Role Playing">
-                            <img src="../assets/game-covers/elden-ring.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Elden Ring is an action role-playing game developed by FromSoftware and published by Bandai Namco Entertainment. Released on February 25, 2022, for platforms including Microsoft Windows, PlayStation 4, PlayStation 5, Xbox One, and Xbox Series X/S, the game has garnered significant acclaim for its expansive open world and intricate gameplay mechanics." 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Role Playing"
+                        data-image="../assets/game-covers/elden-ring.jpg">
+                        <img src="../assets/game-covers/elden-ring.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Elden Ring is an action role-playing game developed by FromSoftware and published by Bandai Namco Entertainment. Released on February 25, 2022, for platforms including Microsoft Windows, PlayStation 4, PlayStation 5, Xbox One, and Xbox Series X/S, the game has garnered significant acclaim for its expansive open world and intricate gameplay mechanics."
                                 class="card-title">Elden Ring</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">100 ratings</p>
-                                </div>
+                            <p class="card-text">$49.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">100 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Action">
-                            <img src="../assets/game-covers/dmc5.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Devil May Cry 5 is an action-adventure game developed and published by Capcom, released on March 8, 2019, for PlayStation 4, Windows, and Xbox One. It serves as the sixth installment in the Devil May Cry series and continues the franchise's signature hack-and-slash gameplay." 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Action"
+                        data-image="../assets/game-covers/dmc5.jpg">
+                        <img src="../assets/game-covers/dmc5.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Devil May Cry 5 is an action-adventure game developed and published by Capcom, released on March 8, 2019, for PlayStation 4, Windows, and Xbox One. It serves as the sixth installment in the Devil May Cry series and continues the franchise's signature hack-and-slash gameplay."
                                 class="card-title">Devil May Cry 5</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <p class="user-rating">60 ratings</p>
-                                </div>
+                            <p class="card-text">$39.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <p class="user-rating">60 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Role Playing">
-                            <img src="../assets/game-covers/ffxvi.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Final Fantasy XVI is an action role-playing game developed and published by Square Enix, released on June 22, 2023, for PlayStation 5 and subsequently for PC. As the sixteenth main installment in the acclaimed Final Fantasy series, it offers players a rich narrative, intricate combat systems, and a vast open world to explore." 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Role Playing"
+                        data-image="../assets/game-covers/ffxvi.jpg">
+                        <img src="../assets/game-covers/ffxvi.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Final Fantasy XVI is an action role-playing game developed and published by Square Enix, released on June 22, 2023, for PlayStation 5 and subsequently for PC. As the sixteenth main installment in the acclaimed Final Fantasy series, it offers players a rich narrative, intricate combat systems, and a vast open world to explore."
                                 class="card-title">Final Fantasy XVI</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">15 ratings</p>
-                                </div>
+                            <p class="card-text">$49.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">15 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Adventure">
-                            <img src="../assets/game-covers/minecraft.png" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Minecraft is a sandbox video game developed by Mojang Studios, initially released in 2011. It allows players to explore a procedurally generated, blocky 3D world, extracting resources and building structures. The game features various modes, including survival mode, where players must acquire resources to build and maintain their health, and creative mode, where players have unlimited resources to build with. " 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Adventure"
+                        data-image="../assets/game-covers/minecraft.png">
+                        <img src="../assets/game-covers/minecraft.png" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Minecraft is a sandbox video game developed by Mojang Studios, initially released in 2011. It allows players to explore a procedurally generated, blocky 3D world, extracting resources and building structures. The game features various modes, including survival mode, where players must acquire resources to build and maintain their health, and creative mode, where players have unlimited resources to build with. "
                                 class="card-title">Minecraft</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">22 ratings</p>
-                                </div>
+                            <p class="card-text">$29.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">22 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Adventure">
-                            <img src="../assets/game-covers/split-fiction.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="'Split Fiction' is an action-adventure game developed by Hazelight Studios and published by Electronic Arts, released on March 6, 2025, for PlayStation 5, Windows, and Xbox Series X/S. " 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Adventure"
+                        data-image="../assets/game-covers/split-fiction.jpg">
+                        <img src="../assets/game-covers/split-fiction.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="'Split Fiction' is an action-adventure game developed by Hazelight Studios and published by Electronic Arts, released on March 6, 2025, for PlayStation 5, Windows, and Xbox Series X/S. "
                                 class="card-title">Split Fiction</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">69 ratings</p>
-                                </div>
+                            <p class="card-text">$39.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">69 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Survival">
-                            <img src="../assets/game-covers/rust.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="'Rust' is a survival video game developed by Facepunch Studios, officially released in February 2018 after an early access phase starting in 2013. Players gather resources, build shelters, and defend against threats like wildlife, environmental hazards, and other players. The game emphasizes crafting, exploration, and combat, offering both player-versus-environment (PvE) and player-versus-player (PvP) interactions. Available on platforms such as PC, Xbox One, and PlayStation 4, 'Rust' has garnered a significant player base and continues to receive updates." 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Survival"
+                        data-image="../assets/game-covers/rust.jpg">
+                        <img src="../assets/game-covers/rust.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="'Rust' is a survival video game developed by Facepunch Studios, officially released in February 2018 after an early access phase starting in 2013. Players gather resources, build shelters, and defend against threats like wildlife, environmental hazards, and other players. The game emphasizes crafting, exploration, and combat, offering both player-versus-environment (PvE) and player-versus-player (PvP) interactions. Available on platforms such as PC, Xbox One, and PlayStation 4, 'Rust' has garnered a significant player base and continues to receive updates."
                                 class="card-title">Rust</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">5 ratings</p>
-                                </div>
+                            <p class="card-text">$19.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">5 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Adventure">
-                            <img src="../assets/game-covers/firewatch.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Firewatch is a first-person adventure game developed by Campo Santo and released in February 2016 for platforms including Linux, OS X, PlayStation 4, Windows, Xbox One, and later for Nintendo Switch in December 2018. " 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Adventure"
+                        data-image="../assets/game-covers/firewatch.jpg">
+                        <img src="../assets/game-covers/firewatch.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Firewatch is a first-person adventure game developed by Campo Santo and released in February 2016 for platforms including Linux, OS X, PlayStation 4, Windows, Xbox One, and later for Nintendo Switch in December 2018. "
                                 class="card-title">Firewatch</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">3 ratings</p>
-                                </div>
+                            <p class="card-text">$19.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">3 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Survival">
-                            <img src="../assets/game-covers/stardew.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Stardew Valley is a popular farming simulation and role-playing game developed by Eric 'ConcernedApe' Barone. It was first released in 2016 and has since been made available on multiple platforms, including PC, consoles, and mobile devices." 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Survival"
+                        data-image="../assets/game-covers/stardew.jpg">
+                        <img src="../assets/game-covers/stardew.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Stardew Valley is a popular farming simulation and role-playing game developed by Eric 'ConcernedApe' Barone. It was first released in 2016 and has since been made available on multiple platforms, including PC, consoles, and mobile devices."
                                 class="card-title">Stardew Valley</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <p class="user-rating">47 ratings</p>
-                                </div>
+                            <p class="card-text">$19.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <p class="user-rating">47 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Role Playing">
-                            <img src="../assets/game-covers/kcd2.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Kingdom Come: Deliverance II is the sequel to the acclaimed medieval role-playing game developed by Warhorse Studios. Released on February 4, 2025, it continues the story of Henry, portrayed by British actor Tom McKay, in a richly detailed medieval setting. " 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Role Playing"
+                        data-image="../assets/game-covers/kcd2.jpg">
+                        <img src="../assets/game-covers/kcd2.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Kingdom Come: Deliverance II is the sequel to the acclaimed medieval role-playing game developed by Warhorse Studios. Released on February 4, 2025, it continues the story of Henry, portrayed by British actor Tom McKay, in a richly detailed medieval setting. "
                                 class="card-title">Kingdom Come: Deliverance 2</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">10 ratings</p>
-                                </div>
+                            <p class="card-text">$49.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">10 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Adventure">
-                            <img src="../assets/game-covers/rdr2.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Red Dead Redemption 2 is an open-world action-adventure game developed and published by Rockstar Games. Released in 2018, it serves as a prequel to Red Dead Redemption (2010) and is widely regarded as one of the greatest video games of all time." 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Adventure"
+                        data-image="../assets/game-covers/rdr2.jpg">
+                        <img src="../assets/game-covers/rdr2.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Red Dead Redemption 2 is an open-world action-adventure game developed and published by Rockstar Games. Released in 2018, it serves as a prequel to Red Dead Redemption (2010) and is widely regarded as one of the greatest video games of all time."
                                 class="card-title">Red Dead Redemption 2</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <p class="user-rating">100 ratings</p>
-                                </div>
+                            <p class="card-text">$29.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <p class="user-rating">100 ratings</p>
                             </div>
-                        </a>
-                        <a href="../html/product-view.html" class="card" data-genre="Fighting">
-                            <img src="../assets/game-covers/tekken8.jpg" alt="Product Image">
-                            <div class="card-body">
-                                <h5 data-des="Tekken 8, the latest installment in the renowned fighting game series, was released on January 26, 2024, for PlayStation 5, Microsoft Windows, and Xbox Series X/S. Developed using Unreal Engine 5, the game offers enhanced graphics and introduces new mechanics such as the 'Heat' system and 'Tornado' hits. The narrative continues six months after its predecessor, focusing on the final confrontation between Jin Kazama and his father, Kazuya Mishima, while introducing new characters like Reina, Heihachi Mishima's daughter." 
-                                
+                        </div>
+                    </a>
+                    <a href="../html/product-view.html" class="card" data-genre="Fighting"
+                        data-image="../assets/game-covers/tekken8.jpg">
+                        <img src="../assets/game-covers/tekken8.jpg" alt="Product Image">
+                        <div class="card-body">
+                            <h5 data-des="Tekken 8, the latest installment in the renowned fighting game series, was released on January 26, 2024, for PlayStation 5, Microsoft Windows, and Xbox Series X/S. Developed using Unreal Engine 5, the game offers enhanced graphics and introduces new mechanics such as the 'Heat' system and 'Tornado' hits. The narrative continues six months after its predecessor, focusing on the final confrontation between Jin Kazama and his father, Kazuya Mishima, while introducing new characters like Reina, Heihachi Mishima's daughter."
                                 class="card-title">Tekken 8</h5>
-                                <p class="card-text">$39.99</p>
-                                <div class="star-rating">
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o checked"></span>
-                                    <span class="fa fa-star-o"></span>
-                                    <p class="user-rating">65 ratings</p>
-                                </div>
+                            <p class="card-text">$49.99</p>
+                            <div class="star-rating">
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o checked"></span>
+                                <span class="fa fa-star-o"></span>
+                                <p class="user-rating">65 ratings</p>
                             </div>
-                        </a>
+                        </div>
+                    </a>
 
-                        <!-- Add additional cards as needed -->
-                    </div>
-                    <!-- <div class="pagination">
+                    <!-- Add additional cards as needed -->
+                </div>
+                <!-- <div class="pagination">
                         <a href="#">&laquo;</a>
                         <a href="#">1</a>
                         <a class="active" href="#">2</a>
@@ -378,12 +375,11 @@
                         <a href="#">6</a>
                         <a href="#">&raquo;</a>
                     </div> -->
-                </section>
             </section>
-        </main>
-    </div>
+        </section>
+    </main>
 
-    <!-- Log In Modal Structure -->
+    <!-- Login Modal -->
     <div id="login-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -393,10 +389,13 @@
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit" class="submit-btn">Log In</button>
             </form>
+            <p class="modal-switch">
+                Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a>
+            </p>
         </div>
     </div>
 
-    <!-- Sign Up Modal Structure -->
+    <!-- Signup Modal -->
     <div id="signup-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -409,10 +408,14 @@
                 <input type="password" name="password_confirm" placeholder="Confirm Password" required>
                 <button type="submit" class="submit-btn">Sign Up</button>
             </form>
+            <p class="modal-switch">
+                Already have an account? <a href="#" id="switch-to-login">Log In</a>
+            </p>
         </div>
     </div>
 
     <script src="../js/dashboard-script.js"></script>
+    <script src="../js/auth.js"></script>
 </body>
 
 </html>

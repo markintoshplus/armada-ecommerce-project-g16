@@ -1,126 +1,205 @@
-var quantity = document.getElementById("quantity").textContent;
-var quantity_element = document.getElementById("quantity");
-var quantity_num = Number(quantity);
+document.addEventListener("DOMContentLoaded", function () {
+    /*==============================
+      1) Retrieve and Populate Main Product Details
+    ==============================*/
+    let product = JSON.parse(localStorage.getItem("selectedProduct"));
+    if (product) {
+        // Populate product details
+        document.getElementById("main_img").src = product.image;
+        document.getElementById("name").textContent = product.name;
+        document.getElementById("genre").textContent = product.genre;
+        document.getElementById("price_store").textContent = product.price;
+        document.getElementById("description_final").textContent = product.description;
 
-var amount = document.getElementById("total_amount").textContent;
-var amount_element = document.getElementById("total_amount");
-var amount_num = Number(amount);
+        // Set the user rating text (e.g., "13 ratings")
+        // Ensure your HTML includes an element with id="userRatingCount" inside the star-rating container.
+        const userRatingText = product.rating || "0 ratings";
+        if (document.getElementById("userRatingCount")) {
+            document.getElementById("userRatingCount").textContent = userRatingText;
+        }
 
-var up = document.getElementById("up");
-var down = document.getElementById("down");
-
-var cart = document.getElementById("cart").textContent;
-var cart_element = document.getElementById("cart");
-var cart_num = Number(cart);
-
-// var add_to_cart = document.getElementById("add-to-cart");
-
-up.addEventListener("click", function(){
-    quantity_num++;
-    amount_num += 10;
-    if(quantity_num <= 0 || amount_num <= 0) {
-        quantity_num = 0;   
-        amount_num = 0;
+        // Set star rating (here we use a default value of 4; you can adjust as needed)
+        setStarRating(4);
     }
-    quantity_element.textContent = `${quantity_num}`;
-    amount_element.textContent = `$${amount_num}`;
+
+    /**
+     * Helper: Sets the star icons to show starCount filled stars out of 5.
+     * Expects star elements with IDs star1, star2, ..., star5.
+     * @param {number} starCount - Number of filled stars (0-5)
+     */
+    function setStarRating(starCount) {
+        for (let i = 1; i <= 5; i++) {
+            const starElem = document.getElementById(`star${i}`);
+            if (!starElem) continue;
+            if (i <= starCount) {
+                starElem.classList.remove("fa-star-o");
+                starElem.classList.add("fa-star", "checked");
+            } else {
+                starElem.classList.remove("fa-star", "checked");
+                starElem.classList.add("fa-star-o");
+            }
+        }
+    }
+
+    /*==============================
+      2) Display Similar Items
+    ==============================*/
+    function displaySimilarItems(items) {
+        let bottomUl = document.getElementById("bottom_ul");
+        bottomUl.innerHTML = ""; // Clear existing items
+
+        items.forEach(item => {
+            let li = document.createElement("li");
+            li.className = "similar-item";
+
+            let container = document.createElement("div");
+
+            let img = document.createElement("img");
+            img.src = item.image;
+            img.className = "bottom_pictures";
+            img.alt = item.name;
+            container.appendChild(img);
+
+            let titleDiv = document.createElement("div");
+            titleDiv.className = "title";
+
+            let p = document.createElement("p");
+            p.textContent = item.name;
+            titleDiv.appendChild(p);
+
+            let starsDiv = document.createElement("div");
+            starsDiv.className = "stars";
+            let ratingP = document.createElement("p");
+            ratingP.className = "rating";
+            ratingP.textContent = item.rating;
+            starsDiv.appendChild(ratingP);
+            titleDiv.appendChild(starsDiv);
+
+            container.appendChild(titleDiv);
+            li.appendChild(container);
+
+            // Make each similar item clickable
+            li.addEventListener("click", function () {
+                localStorage.setItem("selectedProduct", JSON.stringify(item));
+                window.location.href = "product-view.html";
+            });
+
+            bottomUl.appendChild(li);
+        });
+    }
+
+    // Retrieve similar items from localStorage and filter by matching genre (case-insensitive)
+    let similarItems = JSON.parse(localStorage.getItem("similarItems")) || [];
+    if (product && product.genre) {
+        similarItems = similarItems.filter(item =>
+            item.genre.toLowerCase() === product.genre.toLowerCase()
+        );
+    }
+    // Fallback if no similar items exist
+    if (!similarItems || similarItems.length === 0) {
+        similarItems = [
+            { image: "../assets/game-covers/bg3.jpg", name: "Baldur's Gate 3", rating: "20 ratings", genre: product ? product.genre : "Role Playing" },
+            { image: "../assets/game-covers/dmc5.jpg", name: "Devil May Cry 5", rating: "60 ratings", genre: product ? product.genre : "Action" },
+            { image: "../assets/game-covers/ffxvi.jpg", name: "Final Fantasy XVI", rating: "15 ratings", genre: product ? product.genre : "Role Playing" }
+        ];
+    }
+    displaySimilarItems(similarItems);
+
+    /*==============================
+      3) Quantity and Amount Update
+    ==============================*/
+    // Retrieve unit price as a number (strip non-numeric characters)
+    let unitPrice = 0;
+    if (product && product.price) {
+        unitPrice = parseFloat(product.price.replace(/[^0-9\.]+/g, ''));
+    }
+
+    let quantityEl = document.getElementById("quantity");
+    let amountEl = document.getElementById("total_amount");
+
+    // Initialize quantity and amount
+    let quantity = parseInt(quantityEl.textContent) || 0;
+    let amount = unitPrice * quantity;
+    amountEl.textContent = `$${amount.toFixed(2)}`;
+
+    let upBtn = document.getElementById("up");
+    let downBtn = document.getElementById("down");
+
+    upBtn.addEventListener("click", function () {
+        quantity++;
+        amount = unitPrice * quantity;
+        quantityEl.textContent = quantity;
+        amountEl.textContent = `$${amount.toFixed(2)}`;
+    });
+
+    downBtn.addEventListener("click", function () {
+        quantity--;
+        if (quantity < 0) quantity = 0;
+        amount = unitPrice * quantity;
+        quantityEl.textContent = quantity;
+        amountEl.textContent = `$${amount.toFixed(2)}`;
+    });
+
+    /*==============================
+      4) Add to Cart Functionality
+    ==============================*/
+    let addToCartBtn = document.getElementById("add-to-cart");
+    addToCartBtn.addEventListener("click", function () {
+        if (quantity <= 0) {
+            Swal.fire({
+                title: "Quantity Required",
+                text: "Please select at least 1 item.",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+            return;
+        }
+        if (!product) {
+            Swal.fire({
+                title: "No Product Selected",
+                text: "There is no product to add to your cart.",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+            return;
+        }
+
+        // Use unitPrice already extracted above
+        let numericPrice = unitPrice;
+
+        // Retrieve current cart (or initialize empty array)
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Check if product exists in cart (using product.name as identifier)
+        let existingItem = cart.find(item => item.name === product.name);
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            let cartItem = {
+                id: product.id || Date.now(),
+                name: product.name,
+                image: product.image,
+                price: numericPrice,
+                quantity: quantity
+            };
+            cart.push(cartItem);
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Update cart counter if exists (assume element with id "cart" shows count)
+        let cartCounter = document.getElementById("cart");
+        if (cartCounter) {
+            let totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCounter.textContent = totalQty;
+        }
+
+        Swal.fire({
+            title: "Added to Cart!",
+            text: `${product.name} has been added to your cart.`,
+            icon: "success",
+            timer: 1500,
+            showConfirmButton: false
+        });
+    });
 });
-
-
-down.addEventListener("click", function(){
-    quantity_num--;
-    amount_num -= 10;
-    if(quantity_num <= 0 || amount_num <= 0) {
-        quantity_num = 0;
-        amount_num = 0;
-    }
-    quantity_element.textContent = `${quantity_num}`;
-    amount_element.textContent = `$${amount_num}`;
-});
-
-// value = parseFloat(document.getElementById("value"). value);
-
-var add_to_cart = document.getElementById("add-to-cart");
-var show_alert = document.getElementById("customAlert");
-var close_alert = document.getElementById("closeAlert");
-show_alert.style.display = "none";
-add_to_cart.addEventListener("click", function(){
-    
-    if (quantity_num > 0) {
-        show_alert.style.display = "flex";
-        cart_num++;
-        cart_element.textContent = `${cart_num}`;
-        // DATA TO PASS FOR ADD TO CART
-        localStorage.setItem("pass_cardName", card_name_store);
-        localStorage.setItem("pass_price", price_store.textContent);
-        localStorage.setItem("pass_quantity", quantity_num);
-    }
-
-});
-
-close_alert.addEventListener("click", function(){
-    show_alert.style.display = "none";
-});
-
-
-//GET DATA FROM DASHBOARD
-var genre_data = localStorage.getItem("genre_data");
-var price = localStorage.getItem("price");
-var card_name = localStorage.getItem("card_name");
-var rating = localStorage.getItem("rating");
-// var rate = localStorage.getItem("rate")
-var picc = localStorage.getItem("selectedImage");
-var selected_num = localStorage.getItem("selected_num");
-var selectedImages = JSON.parse(localStorage.getItem("selectedImages"));
-var names = JSON.parse(localStorage.getItem("names"));
-var des = localStorage.getItem("des");
-var selectedRatings = JSON.parse(localStorage.getItem("selectedRatings"));
-
-
-
-
-//PUT DATA FROM DASHBOARD TO PRODUCT VIEW
-var genre = document.getElementById("genre");
-genre.textContent = genre_data;
-
-var price_store = document.getElementById("price_store");
-price_store.textContent = price;
-
-var card_name_store = document.getElementById("name");
-card_name_store.textContent = card_name;
-
-var rating_store = document.getElementById("ratings");
-rating_store.textContent = rating;
-
-document.getElementById("main_img").setAttribute("src", picc);
-var left_ul = document.getElementById("left_ul");
-
-document.getElementById("description_final").textContent = des
-
-
-for(let i=0; i<4; i++) {
-    var small_pic = document.getElementById(`top${i}`);
-    if(selectedImages[i] != undefined) {
-        small_pic.setAttribute("src", selectedImages[i]);
-    } else {
-        var li = document.getElementById(`li${i}`);
-        left_ul.removeChild(li);
-    }
-}
-
-var bottom_div = document.getElementById("bottom_ul");
-
-for(let j=0; j<5; j++) {
-    var bottom_pic = document.getElementById(`top2_${j}`)
-    var bottom_p = document.getElementById(`bottom_p${j}`);
-    var rating_bottom = document.getElementById(`rating_bottom${j}`);
-    if(selectedImages[j] != null || names[j] != null) {
-        bottom_pic.setAttribute("src", selectedImages[j]);
-        bottom_p.textContent = names[j]
-        rating_bottom.textContent = selectedRatings[j];
-    } else {
-        var bottom_del = document.getElementById(`bottom_li${j}`);
-        bottom_div.removeChild(bottom_del);
-    }
-}
-

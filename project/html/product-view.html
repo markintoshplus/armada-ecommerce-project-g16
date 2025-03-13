@@ -1,193 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product View</title>
-        <link rel="stylesheet" href="../css/product-view.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body>
-        <section class="sidebar">
-            <a href="#"><img src="../assets/logo/logo.png" alt="Logo"></a>
-        </section>
-        <section class="right">
-            <header>
-                <div>
-                    <a href="#"><img src="../assets/logo/logo1.png" alt="Logo"></a>
-                    <h6>Let's find your next favorite game.</h6>
-                </div>
-                <!-- <img id="profile" src="../assets/soy/profile.png" alt="profile"> -->
-                <div>
-                    <a href="#" id="login-btn" class="log-in-btn">Log In</a>
-                    <a href="#" id="signup-btn" class="sign-up-btn">Sign Up</a>
-                </div>
-            </header>
-            <section class="main">
-                <article class="search">
-                    <input type="text" placeholder="Search Products">
-                    <a href="../html/cart.html"><button>Cart (<span id="cart">0</span>)</button></a>
-                </article>
-                <button class="back"><i class="fas fa-angle-left"></i>All Products(<span>0</span>)</button>
-                <section class="top_row">
-                    <div class="top_row_left">
-                        <img src="../assets/soy/burger.jpg" class="main_burger" alt="main burger" id="main_img">
-                        <div>
-                            <ul id="left_ul">
-                                <li id="li3"><img src="../assets/soy/burger.jpg" id="top3" alt="burger"></li>
-                                <li id="li2"><img src="../assets/soy/burger.jpg" id="top2" alt="burger"></li>
-                                <li id="li1"><img src="../assets/soy/burger.jpg" id="top1" alt="burger"></li>
-                                <li id="li0"><img src="../assets/soy/burger.jpg" id="top0" alt="burger"></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="top_row_right">
-                        <div class="top_right_text">
-                            <h5 id="name">Vegetables</h5>
-                            <h6 id="genre"></h6>
-                            <div class="stars">
-                                <span class="fa fa-star-o checked"></span>
-                                <span class="fa fa-star-o checked"></span>
-                                <span class="fa fa-star-o checked"></span>
-                                <span class="fa fa-star-o checked"></span>
-                                <span class="fa fa-star-o"></span>
-                                <p id="ratings">36 Rating</p>
-                            </div>
-                            <h6 id="price_store">$ 10</h6>
-                            <p class="description" id="description_final">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem facilis quo qui velit dolores, voluptates nesciunt libero sequi laudantium? Sequi quod a doloremque distinctio dicta deleniti beatae quos corrupti.</p>
-                        </div>
-                        <div class="top_row_right_bottom">
-                            <div class="quantity">
-                                <h6>Quantity</h6>
-                                <p id="quantity">0</p>
-                            </div>
-                            <div class="buttons">
-                                <button id="up"><i class="fas fa-caret-up"></i></button>
-                                <button id="down"><i class="fas fa-caret-down"></i> </button>
-                            </div>
-                            <div class="amount">
-                                <h6>Total Amount</h6>
-                                <p class="amount_money" id="total_amount">0</p>
-                            </div>
-                            <button class="add" id="add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-                </section>
-                <section class="bottom_row">
-                    <p class="similar">Similar Items</p>
-                    <article>
-                        <ul id="bottom_ul">
-                            <li id="bottom_li0">
-                                <div>
-                                    <img class="bottom_pictures" id="top2_0" src="../assets/soy/burger.jpg" alt="image">
-                                    <div class="title">
-                                        <div>
-                                            <p id="bottom_p0">Vegetables</p>
-                                            <div class="stars">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/no_star.png" alt="star">
-                                                <p id="rating_bottom0" class="rating">36 Rating</p>
-                                            </div>
-                                        </div>
-                                        <h6>$ 10</h6>
-                                    </div>
-                                </div>
-                            </li>
-                            <li id="bottom_li1">
-                                <div>
-                                    <img class="bottom_pictures" id="top2_1" src="../assets/soy/burger.jpg" alt="image">
-                                    <div class="title">
-                                        <div>
-                                            <p id="bottom_p1">Vegetables</p>
-                                            <div class="stars">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/no_star.png" alt="star">
-                                                <p id="rating_bottom1" class="rating">36 Rating</p>
-                                            </div>
-                                        </div>
-                                        <h6>$ 10</h6>
-                                    </div>
-                                </div>
-                            </li>
-                            <li id="bottom_li2">
-                                <div>
-                                    <img class="bottom_pictures" id="top2_2" src="../assets/soy/burger.jpg" alt="image">
-                                    <div class="title">
-                                        <div>
-                                            <p id="bottom_p2">Vegetables</p>
-                                            <div class="stars">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/no_star.png" alt="star">
-                                                <p id="rating_bottom2" class="rating">36 Rating</p>
-                                            </div>
-                                        </div>
-                                        <h6>$ 10</h6>
-                                    </div>
-                                </div>
-                            </li>
-                            <li id="bottom_li3">
-                                <div>
-                                    <img class="bottom_pictures" id="top2_3" src="../assets/soy/burger.jpg" alt="image">
-                                    <div class="title">
-                                        <div>
-                                            <p id="bottom_p3">Vegetables</p>
-                                            <div class="stars">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/no_star.png" alt="star">
-                                                <p id="rating_bottom3" class="rating">36 Rating</p>
-                                            </div>
-                                        </div>
-                                        <h6>$ 10</h6>
-                                    </div>
-                                </div>
-                            </li>
-                            <li id="bottom_li4">
-                                <div>
-                                    <img class="bottom_pictures" id="top2_4" src="../assets/soy/burger.jpg" alt="image">
-                                    <div class="title">
-                                        <div>
-                                            <p id="bottom_p4">Vegetables</p>
-                                            <div class="stars">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/star.png" alt="star">
-                                                <img src="../assets/soy/no_star.png" alt="star">
-                                                <p id="rating_bottom4" class="rating">36 Rating</p>
-                                            </div>
-                                        </div>
-                                        <h6>$ 10</h6>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </article>
-                </section>
-            </section>
-        </section>
-        <div id="customAlert">
-            <div class="alert-box">
-                <i class="fa-solid fa-check-circle" style="color: green; font-size: 40px;"></i>
-                <p>Added to cart successfully!</p>
-                <button id="closeAlert">OK</button>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Product View</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/product-view.css" />
+    <!-- Use the same Font Awesome version as your dashboard for consistency -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <!-- Page Content -->
+    <div class="content-container">
+        <nav role="navigation">
+            <div class="navbar-brand">
+                <a href="dashboard.html"><img src="../assets/logo/logo1.png" alt="Logo"></a>
+                <div class="navbar-text">Let's find your next favorite game.</div>
             </div>
+            <div class="navbar-shop-name">
+                <a href="dashboard.html"><img src="../assets/logo/logo.png" alt="Logo">The Game Shop</a>
+            </div>
+            <div class="navbar-btn">
+                <a href="#" id="login-btn" class="log-in-btn">Log In</a>
+                <a href="#" id="signup-btn" class="sign-up-btn">Sign Up</a>
+            </div>
+        </nav>
+
+        <!-- Main Wrapper (centered content) -->
+        <main class="main-wrapper">
+            <section class="search-bar">
+                <input type="text" placeholder="Search Products" />
+                <a href="../html/cart.html" id="cart-link">
+                    <button>Cart (<span id="cart">0</span>)</button>
+                </a>
+            </section>
+
+            <a href="dashboard.html" class="back-btn">
+                <button class="back">
+                    <i class="fa fa-angle-left"></i>All Products (<span>0</span>)
+                </button>
+            </a>
+
+            <section class="top_row">
+                <div class="top_row_left">
+                    <img src="../assets/soy/burger.jpg" class="main_burger" alt="Game Cover" id="main_img" />
+                </div>
+                <div class="top_row_right">
+                    <div class="top_right_text">
+                        <h5 id="name">Game Title</h5>
+                        <h6 id="genre"></h6>
+
+                        <!-- Star Rating + User Rating -->
+                        <div class="star-rating" id="starRatingContainer">
+                            <!-- Default: 5 stars, some may be "checked" -->
+                            <span class="fa fa-star-o" id="star1"></span>
+                            <span class="fa fa-star-o" id="star2"></span>
+                            <span class="fa fa-star-o" id="star3"></span>
+                            <span class="fa fa-star-o" id="star4"></span>
+                            <span class="fa fa-star-o" id="star5"></span>
+                            <p class="user-rating" id="userRatingCount"></p>
+                        </div>
+                        <!-- End Star Rating -->
+
+                        <h6 id="price_store">$10</h6>
+                        <p class="description" id="description_final">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, minima.
+                        </p>
+                    </div>
+                    <div class="top_row_right_bottom">
+                        <div class="quantity">
+                            <h6>Quantity</h6>
+                            <p id="quantity">0</p>
+                        </div>
+                        <div class="buttons">
+                            <button id="up"><i class="fa fa-caret-up"></i></button>
+                            <button id="down"><i class="fa fa-caret-down"></i></button>
+                        </div>
+                        <div class="amount">
+                            <h6>Total Amount</h6>
+                            <p class="amount_money" id="total_amount">0</p>
+                        </div>
+                        <button class="add" id="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bottom_row">
+                <p class="similar">Similar Items</p>
+                <article>
+                    <ul id="bottom_ul">
+                        <!-- Similar items will be dynamically populated here -->
+                    </ul>
+                </article>
+            </section>
+        </main>
+    </div>
+
+    <!-- Custom Alert -->
+    <div id="customAlert">
+        <div class="alert-box">
+            <i class="fa fa-check-circle" style="color: green; font-size: 40px"></i>
+            <p>Added to cart successfully!</p>
+            <button id="closeAlert">OK</button>
         </div>
-        <script src="../js/product-view_script.js"></script>
-    </body>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form id="loginForm" action="login.php" method="post">
+                <input type="text" name="username" placeholder="Username or Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="submit-btn">Log In</button>
+            </form>
+            <p class="modal-switch">
+                Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Your Account</h2>
+            <form id="signupForm" action="signup.php" method="post">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password_confirm" placeholder="Confirm Password" required>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+            <p class="modal-switch">
+                Already have an account? <a href="#" id="switch-to-login">Log In</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/product-view_script.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
 
 </html>
-
-<!-- Test -->
