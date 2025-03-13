@@ -115,6 +115,16 @@ window.addEventListener("click", (event) => {
     }
 });
 
+// Restrict cart access for users who are not logged in
+const cartButton = document.querySelector('.cart-btn');
+cartButton.addEventListener('click', function (e) {
+    if (!localStorage.getItem('currentUser')) {
+        e.preventDefault();
+        alert('Please log in to access your cart.');
+        document.getElementById('login-modal').style.display = 'block';
+    }
+});
+
 //GETTING DATA FOR PRODUCT VIEW
 var get_genre = document.querySelectorAll(".card");
 
