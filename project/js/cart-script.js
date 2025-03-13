@@ -2,43 +2,67 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cart data and elements
     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const cartList = document.querySelector('.list-of-orders ul');
+    const searchInput = document.getElementById('searchInput'); 
     const cartCounter = document.getElementById('cart-counter');
     let currentItemToDelete = null;
 
-    // Function to update cart counter
+
+    
     function updateCartCounter() {
         cartCounter.textContent = cartItems.length;
     }
 
-    // Function to render cart items from localStorage
-    function renderCartItems() {
-        cartList.innerHTML = '';
-        cartItems.forEach((item) => {
-            const cartItemHTML = `
-                <li class="cart-item" data-id="${item.id}">
-                    <img src="${item.image}" alt="${item.title}">
-                    <div>
-                        <p class="item-name">${item.title}</p>
-                        <span class="price">$${item.price.toFixed(2)}</span>
-                    </div>
-                    <div class="input-group">
-                        <label>Quantity</label>
-                        <input type="number" value="${item.quantity}" min="1">
-                    </div>
-                    <div class="input-group">
-                        <label>Total</label>
-                        <input type="text" value="$${(item.price * item.quantity).toFixed(2)}" readonly>
-                    </div>
-                    <button class="close">X</button>
+    /**
+     * Function to get items stored in local storage
+     * This will append the items to the page
+     */
+    function renderCartItems(itemsToRender = cartItems) {
+        cartList.innerHTML = ''; // Clear existing content
+    
+        if (itemsToRender.length === 0) {
+            // Show empty cart message
+            const emptyCartHTML = `
+                <li class="empty-cart-message">
+                    <img src="/project/assets/icons/empty_cart.png" alt="Empty cart">
+                    <h3>Your Cart is Empty</h3>
+                    <p>Looks like you haven't added any items yet</p>
+                    <a href="dashboard.html" class="continue-shopping-btn">Continue Shopping</a>
                 </li>
             `;
-            cartList.insertAdjacentHTML('beforeend', cartItemHTML);
-        });
+            cartList.insertAdjacentHTML('beforeend', emptyCartHTML);
+        } else {
+            // Show regular cart items
+            itemsToRender.forEach((item) => {
+                const cartItemHTML = `
+                    <li class="cart-item" data-id="${item.id}">
+                        <img src="${item.image}" alt="${item.title}">
+                        <div>
+                            <p class="item-name">${item.title}</p>
+                            <span class="price">$${item.price.toFixed(2)}</span>
+                        </div>
+                        <div class="input-group">
+                            <label>Quantity</label>
+                            <input type="number" value="${item.quantity}" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label>Total</label>
+                            <input type="text" value="$${(item.price * item.quantity).toFixed(2)}" readonly>
+                        </div>
+                        <button class="close">X</button>
+                    </li>
+                `;
+                cartList.insertAdjacentHTML('beforeend', cartItemHTML);
+            });
+        }
+    
         updateCartCounter();
         updateTotals();
     }
 
-    // Update totals and localStorage
+    /**
+     * Function to calculate the price and quantity of each items
+     * This will also display the total cost of the items in the cart
+     */
     function updateTotals() {
         let overallTotal = 0;
 
@@ -57,7 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('total-amount').textContent = `$${overallTotal.toFixed(2)}`;
     }
 
-    // Delete item functionality (SweetAlert2)
+    /**
+     * Function to delete an item to the list
+     */
     function handleDeleteItem(itemElement) {
         const itemId = itemElement.dataset.id;
         cartItems = cartItems.filter(item => item.id !== itemId);
@@ -65,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCartItems();
     }
 
-    // Event listeners
+
     cartList.addEventListener('input', (e) => {
         if (e.target.matches('input[type="number"]')) {
             updateTotals();
@@ -96,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Payment radio buttons
+    
     const paymentRadios = document.querySelectorAll('input[name="payment"]');
     const cardInfo = document.getElementById('card-info');
     paymentRadios.forEach(radio => {
@@ -105,12 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Order confirmation (SweetAlert2)
+    
     const submitBtn = document.querySelector(".submit_btn");
     if (submitBtn) {
         submitBtn.addEventListener("click", (event) => {
             event.preventDefault();
-            console.log("Submit button clicked!"); // Check if this log appears
+            console.log("Submit button clicked!"); 
             if (validateForm()) {
                 console.log("Form is valid");
                 Swal.fire({
@@ -143,7 +169,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Form validation
+    /**
+     * Function to validate the content of the form
+     * this also checks what payment type is selected to prevent false positive on hidden input box
+     */
     function validateForm() {
         const paymentType = document.querySelector('input[name="payment"]:checked').value;
         let allFieldsFilled = true;
@@ -179,7 +208,16 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Validate form returned true");
         return true;
     }
+     /**
+      * Function to allow search in cart
+      */
+     searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const filteredItems = cartItems.filter(item => 
+            item.title.toLowerCase().includes(searchTerm)
+        );
+        renderCartItems(filteredItems);
+    });
 
-    // Initial setup
     renderCartItems();
 });
