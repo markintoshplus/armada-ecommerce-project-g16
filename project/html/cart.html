@@ -12,15 +12,20 @@
 </head>
 
 <body>
-    <header>
-        <a href="dashboard.html"><img src="../assets/logo/logo1.png" alt="Logo"></a>
-        <div class="navbar-text">Let's find your next favorite game.</div>
-        <h2 class="shop-name">The Game Shop</h2>
-    </header>
-    <main>
-        <div class="side-bar">
-            <a href="#"><img src="../assets/logo/logo.png" alt="Logo"></a>
+    <nav role="navigation">
+        <div class="navbar-brand">
+            <a href="dashboard.html"><img src="../assets/logo/logo1.png" alt="Logo"></a>
+            <div class="navbar-text">Let's find your next favorite game.</div>
         </div>
+        <div class="navbar-shop-name">
+            <a href="dashboard.html"><img src="../assets/logo/logo.png" alt="Logo">The Game Shop</a>
+        </div>
+        <div class="navbar-btn">
+            <a href="#" id="login-btn" class="log-in-btn">Log In</a>
+            <a href="#" id="signup-btn" class="sign-up-btn">Sign Up</a>
+        </div>
+    </nav>
+    <main>
         <section class="list-of-orders">
             <div class="search-cart">
                 <form action="#" method="POST">

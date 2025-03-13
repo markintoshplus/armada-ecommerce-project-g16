@@ -38,24 +38,6 @@ body {
     color: #333
 }
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 100vh;
-    background-color: #5305b3;
-    color: #fff;
-    padding: 0.5rem 0;
-    text-align: center;
-    border-right: 1px solid #b8ace9;
-}
-
-.sidebar a img {
-    width: 40px;
-    height: 40px;
-}
-
 /* Main container */
 .main-container {
     margin-left: 60px;
@@ -94,6 +76,18 @@ nav .navbar-text {
     flex-grow: 1;
     text-align: center;
     font-size: 1rem;
+}
+
+nav .navbar-shop-name a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2rem;
+}
+
+nav .navbar-shop-name img {
+    width: 40px;
+    height: 40px;
 }
 
 nav .navbar-btn {

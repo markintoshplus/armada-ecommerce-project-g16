@@ -14,24 +14,85 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
-header {
-    background-color: #5305B3;
+/* Button styles */
+.log-in-btn,
+.sign-up-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+
+.log-in-btn {
+    background-color: #b8ace9;
+    border: solid 1px #b8ace9;
+    color: #5305b3;
+}
+
+.sign-up-btn {
+    background-color: transparent;
+    border: solid 1px #b8ace9;
+    color: #b8ace9;
+}
+
+.log-in-btn:hover {
+    background-color: #b8ace9;
+}
+
+.sign-up-btn:hover {
+    color: #b8ace9;
+}
+
+/* Navbar styles */
+nav {
+    background-color: #5305b3;
+    color: #fff;
+    padding: 1rem 3rem;
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    justify-content: space-between;
+    height: 60px;
 }
 
-header img {
+nav .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+nav .navbar-brand img {
     width: 40px;
-    border-radius: 10px;
-    margin-right: 1rem;
+    height: 40px;
 }
 
-header .navbar-text {
+nav a {
     color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+nav .navbar-text {
+    flex-grow: 1;
+    text-align: center;
     font-size: 1rem;
-    margin-left: 1rem;
+}
+
+nav .navbar-shop-name a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2rem;
+}
+
+nav .navbar-shop-name img {
+    width: 40px;
+    height: 40px;
+}
+
+nav .navbar-btn {
+    display: flex;
+    gap: 0.5rem;
 }
 
 main {
@@ -41,21 +102,7 @@ main {
     /* Ensure main grows to fill vertical space */
 }
 
-/* Sidebar */
-.side-bar {
-    width: 60px;
-    background-color: #5305B3;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    padding-top: 1rem;
-}
 
-.side-bar a img {
-    width: 40px;
-    height: 40px;
-    margin: 10px;
-}
 
 /* List of Orders Container */
 .list-of-orders {

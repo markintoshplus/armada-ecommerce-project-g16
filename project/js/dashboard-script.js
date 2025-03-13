@@ -262,10 +262,11 @@ document.addEventListener('DOMContentLoaded', function () {
      * Last Updated By: Mark Cedrick De Vera  
      */
     function updateNavbarForLoggedInUser(user) {
-        const loginBtn = document.getElementById('login-btn');
-        const signupBtn = document.getElementById('signup-btn');
-        loginBtn.style.display = "none";
-        signupBtn.style.display = "none";
+        // Hide the login and signup buttons and their container
+        const navbarBtnContainer = document.querySelector('.navbar-btn');
+        if (navbarBtnContainer) {
+            navbarBtnContainer.style.display = "none";
+        }
 
         let userInfoContainer = document.getElementById('user-info');
         if (!userInfoContainer) {
@@ -274,8 +275,8 @@ document.addEventListener('DOMContentLoaded', function () {
             userInfoContainer.style.display = "flex";
             userInfoContainer.style.alignItems = "center";
             userInfoContainer.style.gap = "0.5rem";
-            const navbar = document.querySelector('nav');
-            navbar.appendChild(userInfoContainer);
+            const header = document.querySelector('nav');
+            header.appendChild(userInfoContainer);
         }
         userInfoContainer.innerHTML = `<span>Welcome, ${user.username}!</span>`;
         const logoutBtn = document.createElement('button');
@@ -292,6 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         userInfoContainer.appendChild(logoutBtn);
     }
+
 
     // On page load, update navbar if a user is already logged in
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
