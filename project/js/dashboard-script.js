@@ -11,7 +11,7 @@ genreLinks.forEach(link => {
         // Call filter function with the selected genre
         filterByGenre(selectedGenre);
     });
-});
+}); 
 
 function filterByGenre(genre) {
     // Get all product cards from the grid container
@@ -113,5 +113,55 @@ window.addEventListener("click", (event) => {
     if (event.target === signupModal) {
         signupModal.style.display = "none";
     }
+});
+
+//GETTING DATA FOR PRODUCT VIEW
+var get_genre = document.querySelectorAll(".card");
+
+get_genre.forEach(genre_name => {
+    genre_name.addEventListener("click", function() {
+        var genre_data = this.getAttribute("data-genre");
+        localStorage.setItem("genre_data", genre_data); 
+
+        var price = this.querySelector(".card-text").textContent.trim();
+        localStorage.setItem("price", price); 
+
+        var card_name = this.querySelector(".card-title").textContent.trim();
+        localStorage.setItem("card_name", card_name);
+
+        var card_des = this.querySelector(".card-title").getAttribute("data-des");
+        localStorage.setItem("des", card_des);
+        
+        var matchingRatings = document.querySelectorAll(`.card[data-genre="${genre_data}"] .user-rating`);
+        var ratings_arr = [];
+        matchingRatings.forEach(ratingElement => {
+            ratings_arr.push(ratingElement.textContent.trim()); 
+        });
+        localStorage.setItem("selectedRatings", JSON.stringify(ratings_arr));
+
+        var rating = this.querySelector(".user-rating").textContent.trim();
+        localStorage.setItem("rating", rating);
+
+        var matchingImages = document.querySelectorAll(`.card[data-genre="${genre_data}"] img`);
+
+        var imageSources = []; 
+        matchingImages.forEach(img => {
+
+            imageSources.push(img.getAttribute("src")); 
+        });
+
+        var matching_name = document.querySelectorAll(`.card[data-genre="${genre_data}"] .card-title`);
+        var each_name = [];
+
+        matching_name.forEach(name => {
+            each_name.push(name.textContent.trim()); // Get text content
+        });
+
+        localStorage.setItem("names", JSON.stringify(each_name));
+        localStorage.setItem("selectedImages", JSON.stringify(imageSources));
+        localStorage.setItem("selected_num", matchingImages.length);
+
+
+    });
 });
 

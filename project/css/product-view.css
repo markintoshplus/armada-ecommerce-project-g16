@@ -5,24 +5,66 @@
     font-family: 'Inter', sans-serif;
     font-weight: 400; 
     font-style: normal; 
+    /* font-family: 'Roboto', sans-serif; */
+}
+
+html, body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
 body {
     display: flex;
     align-items: start;
+    min-height: 100vh;
 
     .sidebar {
-        height: 100vh;
+        height: 100%;
         border-right: solid 1px #e3ebf3;
+        /* position: fixed; */
         width: 60px;
         display: flex;
         justify-content: center;
+        background-color: #5305b3;
 
         img {
             margin-top: 20%;
-            height: 1.9rem;
+            width: 40px;
+            height: 40px;
         }
     }
+}
+
+.log-in-btn,
+.sign-up-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: normal;
+    text-decoration: none;
+    margin: 0;
+}
+
+.log-in-btn {
+    background-color: #b8ace9;
+    border: solid 1px #b8ace9;
+    color: #5305b3;
+}
+
+.sign-up-btn {
+    background-color: transparent;
+    border: solid 1px #b8ace9;
+    color: #b8ace9;
+}
+
+.log-in-btn:hover {
+    background-color: #b8ace9;
+}
+
+.sign-up-btn:hover {
+    color: #b8ace9;
 }
 
 header {
@@ -34,20 +76,24 @@ header {
     color: #ada9c0;
     padding-left: 3%;
     padding-right: 3%;
+    background-color: #5305b3;
 
     h6 {
-        font-size: .8rem;
+        font-size: .9rem;
+        color: #fff;
     }
 
     div {
         display: flex;
         align-items: center;
         gap: 1.5rem;
+
+        img {
+            width: 40px;
+            height: 40px;
+        }
     }
 
-    .head_icon{
-        height: 1.3rem;
-    }
 
     #profile {
         height: 1.9rem;
@@ -69,6 +115,7 @@ header {
         padding-right: 13%;
         padding-top: 3%;
         padding-bottom: 3%;
+        flex-grow: 1;
     }
 }
 
@@ -78,7 +125,7 @@ header {
     background-color: white;
     border-radius: 15px;
     height:63%;
-    padding-right: 5%;
+    padding-right: 2%;
     padding-bottom: 2%;
 }
 
@@ -87,7 +134,7 @@ header {
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 4%;
+    gap: 1rem;
 
     div {
         width: 100%;
@@ -96,6 +143,8 @@ header {
     ul {
         list-style: none;
         display: flex;
+        justify-content: end;
+        gap: 2%;
 
         li {
             display: flex;
@@ -103,15 +152,15 @@ header {
         }
 
         img {
-            height: 105%;
-            width: 85%;
+            height: 80px;
+            width: 80px;
             border-radius: 5px;
         }
 
     }
 
     .main_burger {
-        width: 100%;
+        width: 370px;
         height: 20rem;
         border-radius: 15px;
     }
@@ -123,7 +172,7 @@ header {
     border-top: solid 1px #f1f1f1;
     align-items: end;
     gap: 2%;
-    padding: .7rem;
+    padding-top: 1.3rem;
     h6 {
         font-size: .5rem;
         margin-bottom: .3rem;
@@ -139,6 +188,7 @@ header {
         border-radius: 5px;
         color: #a1a1a1;
     }
+
 
     .quantity {
         p {
@@ -196,6 +246,7 @@ header {
 }
 
 .search {
+    display: flex;
     input {
         padding-left: 0.8rem;
         padding-right: 9rem;
@@ -239,14 +290,20 @@ header {
 
 .top_right_text {
     margin: 0;
-    height: 80%;
+    height: 18rem;
     h5 {
         font-size: 1.5rem;
         margin: 0;
         color: #7d7d7d;
     }
 
-    h6 {
+    #genre {
+        font-size: .8rem;
+        margin-top: .9%;
+        color: #7d7d7d;
+    }
+
+    #price_store {
         font-size: .8rem;
         margin-top: 2%;
         background-color: #f1f1f1;
@@ -260,7 +317,7 @@ header {
     }
 
     .description {
-        margin-top: 3%;
+        margin-top: 1%;
         color: #7d7d7d;
         font-size: .8rem;
         font-weight: 100;
@@ -276,7 +333,7 @@ header {
             height: .8rem;
         }
 
-        .rating {
+        #ratings {
             margin-left: 1%;
             color: #7d7d7d;
             font-size: .7rem;
@@ -292,6 +349,10 @@ header {
 .bottom_row {
     margin-top: 3%;
 
+    article {
+        margin-top: 1%;
+    }
+
     .similar {
         color: #a1a1a1;
     }
@@ -305,11 +366,12 @@ header {
         align-items: start;
         margin-top: .5rem;
 
-        img {
-            height: .7rem;
+        .fa-star-o {
+            height: .3rem;
+            margin: 5px;
         }
 
-        .rating {
+        #ratings {
             margin-left: 1rem;
             color: #7d7d7d;
             white-space: nowrap;
@@ -322,7 +384,10 @@ header {
         list-style: none;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: start;
+        gap: 2.5%;
+        width: 100%;
+        flex-wrap: nowrap;
 
         .title {
             display: flex;
@@ -331,7 +396,7 @@ header {
             padding: 10px;
 
             p {
-                font-size: 1rem;
+                font-size: .8rem;
             }
         }
 
@@ -346,6 +411,7 @@ header {
             padding-top: .6rem;
             padding-bottom: .6rem;
             border-radius: 30px;
+            white-space: nowrap;
         }
 
         li {
@@ -354,11 +420,58 @@ header {
             background-color: white;
         }
 
-        img {
+        .bottom_pictures {
             width: 100%;
+            height: 100%;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
         }
 
     }
+}
+
+#customAlert {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 50%; */
+}
+
+
+
+.alert-box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    min-width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: .9rem;
+    color: #7d7d7d;
+
+    p {
+        margin-left: 5%;
+    }
+}
+
+
+.alert-box button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
 }
