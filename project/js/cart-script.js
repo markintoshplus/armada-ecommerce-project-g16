@@ -35,10 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <label>Quantity</label>
                 <input type="number" value="${item.quantity}" min="1">
               </div>
-              <div class="input-group">
-                <label>Total</label>
-                <input type="text" value="$${(item.price * item.quantity).toFixed(2)}" readonly>
-              </div>
               <button class="close">X</button>
             </li>
           `;
