@@ -158,8 +158,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /*---------------------------------------------------------
-  Section 4: Product View Data Extraction
-----------------------------------------------------------*/
+    Section 4: Product View Data Extraction
+    ----------------------------------------------------------*/
     // When a product card is clicked, store its complete details in localStorage
     const productCards = document.querySelectorAll('.product-grid .card');
     productCards.forEach(card => {

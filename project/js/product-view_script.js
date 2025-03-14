@@ -1,4 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // ---- Prevent cart access if user isn't logged in ----
+    const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+    const cartLink = document.getElementById("cart-link");
+    if (!isLoggedIn && cartLink) {
+        cartLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Not Logged In",
+                text: "Please log in to access your cart.",
+                icon: "warning",
+                confirmButtonText: "OK"
+            });
+        });
+    }
+    // -----------------------------------------------------
+
     /*==============================
       1) Retrieve and Populate Main Product Details
     ==============================*/
@@ -12,13 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("description_final").textContent = product.description;
 
         // Set the user rating text (e.g., "13 ratings")
-        // Ensure your HTML includes an element with id="userRatingCount" inside the star-rating container.
         const userRatingText = product.rating || "0 ratings";
         if (document.getElementById("userRatingCount")) {
             document.getElementById("userRatingCount").textContent = userRatingText;
         }
 
-        // Set star rating (here we use a default value of 4; you can adjust as needed)
+        // Set star rating (using a default value of 4)
         setStarRating(4);
     }
 
@@ -108,7 +123,6 @@ document.addEventListener("DOMContentLoaded", function () {
     /*==============================
       3) Quantity and Amount Update
     ==============================*/
-    // Retrieve unit price as a number (strip non-numeric characters)
     let unitPrice = 0;
     if (product && product.price) {
         unitPrice = parseFloat(product.price.replace(/[^0-9\.]+/g, ''));
@@ -116,8 +130,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let quantityEl = document.getElementById("quantity");
     let amountEl = document.getElementById("total_amount");
-
-    // Initialize quantity and amount
     let quantity = parseInt(quantityEl.textContent) || 0;
     let amount = unitPrice * quantity;
     amountEl.textContent = `$${amount.toFixed(2)}`;
@@ -164,13 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Use unitPrice already extracted above
         let numericPrice = unitPrice;
-
-        // Retrieve current cart (or initialize empty array)
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-        // Check if product exists in cart (using product.name as identifier)
         let existingItem = cart.find(item => item.name === product.name);
         if (existingItem) {
             existingItem.quantity += quantity;
@@ -186,8 +193,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
-
-        // Update cart counter if exists (assume element with id "cart" shows count)
         let cartCounter = document.getElementById("cart");
         if (cartCounter) {
             let totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
